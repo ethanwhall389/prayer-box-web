@@ -15,10 +15,12 @@ export default function Auth() {
     }
     
     return (
-        <div className="login-page">
-            <h1>Create an account or sign in</h1>
-            <ButtonPrimary text={'Sign in with Google'} onClick={signInGoogle} />
-            <ButtonSecondary text={'Sign in with Email'} onClick={signinEmail} />
+        <div className="flex flex-col justify-center items-center h-screen gap-7">
+            <h1 className="text-2xl">Create an account or sign in</h1>
+            <div className="flex flex-col gap-2 w-48">
+                <ButtonPrimary text={'Sign in with Google'} onClick={signInGoogle} />
+                <ButtonSecondary text={'Sign in with Email'} onClick={signinEmail} />
+            </div>
         </div>
     )
 }

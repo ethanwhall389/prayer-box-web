@@ -8,7 +8,7 @@ import ListToday from './pages/list-today/list-today-index'
 function App() {
 
   return (
-    <div className='App'>
+    <div className='h-screen'>
       <Router>
         <Routes>
           <Route path="/" exact element={<Auth/>}/>
