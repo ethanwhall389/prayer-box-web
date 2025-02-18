@@ -21,10 +21,8 @@ export const ButtonCard = ({text, onClick}) => {
         </div>
     )
 }
-export const ButtonIcon = ({icon, size, onClick}) => {
+export const ButtonIcon = ({icon, onClick}) => {
     return (
-        <>
-            <div>{icon}</div>
-        </>
+        <div className='hover:cursor-pointer hover:rotate-45 transition-all' onClick={onClick}>{icon}</div>
     )
 }
