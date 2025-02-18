@@ -1,17 +1,26 @@
 import { auth, providerGoogle, providerEmail } from "../../config/firebase-config"
 import { signInWithPopup } from "firebase/auth"
 import {ButtonPrimary, ButtonSecondary} from "../../components/Button";
+import { useNavigate} from "react-router-dom";
 
 export default function Auth() {
+
+    const navigate = useNavigate();
     
     async function signInGoogle () {
         const results = await signInWithPopup(auth, providerGoogle);
-        console.log(results);
+        const authInfo = {
+            userID: results.user.uid,
+            displayName: results.user.displayName,
+            profilePhoto: results.user.photoURL,
+            isLoggedIn: true,
+        }
+        localStorage.setItem('auth', JSON.stringify(authInfo));
+        navigate('/dashboard');
     }
 
     async function signinEmail () {
         const results = await signInWithPopup(auth, providerEmail);
-        console.log(results);
     }
     
     return (
