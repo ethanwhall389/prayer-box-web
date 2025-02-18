@@ -19,3 +19,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+
+// To deploy to hosting:
+    // firebase login
+    // firebase init
+    // firebase deploy
