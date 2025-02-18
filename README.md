@@ -1,15 +1,8 @@
-# prayer-box-web
+# React + Vite
 
-## Branches:
-- `main` – Always production-ready.
-- `develop` – Where active development happens.
-- `feature/branch-name` – Individual features branched from develop.
-- `release/branch-name` – Prepares a new version for deployment.
-- `hotfix/branch-name` – Fixes critical issues in main without disrupting develop.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Branching Workflow:
-- Create a `feature/branch-name` from develop.
-- Merge feature branches into `develop` when done.
-- Once enough features are ready, create a `release/branch-name` from `develop`.
-- Finalize, test, and merge the release branch into `main` (and back into `develop`).
-- If a critical bug appears in `main`, create a `hotfix/branch-name`, fix it, and merge back into both `main` and `develop`.
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
