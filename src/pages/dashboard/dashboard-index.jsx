@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAddBox } from "../../hooks/useAddBox"
 import { useEffect } from 'react';
 import { useCheckIsNewUser } from '../../hooks/useCheckIsNewUser';
-import { useState } from 'react';
 
 
 export default function Dashboard() {
@@ -12,22 +11,14 @@ export default function Dashboard() {
     const navigate = useNavigate();
     const { addBox } = useAddBox();
     const {checkIsNewUser} = useCheckIsNewUser();
-    const [isNewUser, setIsNewUser] = useState(false);
     
     useEffect(() => {
-        checkIsNewUser(setIsNewUser);
+        checkIsNewUser();
     }, [])
     
-    //only run when the user is a new user
-    if (isNewUser) {
-        addBox();
-    }
 
     return (
         <div className="h-screen p-8 flex flex-col items-center gap-10">
-            {isNewUser && 
-                <h1>NEW USER!!!</h1>
-            }
             <div className='flex justify-between w-full'>
                 <h1 className='text-xl font-bold'>Welcome, [name]!</h1>
                 <p>January 1st, 2025</p>

@@ -25,10 +25,7 @@ export const useCheckIsNewUser = () => {
                 const creationTime = new Date(user.metadata.creationTime).toISOString();
                 const lastSignInTime = new Date(user.metadata.lastSignInTime).toISOString();
                 if (creationTime === lastSignInTime && !onboardingComplete) {
-                    setIsNewUser (true);
                     navigate('/onboarding')
-                } else {
-                    setIsNewUser(false);
                 }
             }
         })
