@@ -2,8 +2,12 @@ import firebase from "firebase/compat/app"
 import 'firebase/auth'
 import 'firebase/firestore'
 import { auth } from "../config/firebase-config"
+import { useNavigate} from "react-router-dom";
+import { useState } from "react";
 
 export const useCheckIsNewUser = () => {
+
+    const navigate = useNavigate();
 
     const checkIsNewUser = (setIsNewUser) => {
         auth.onAuthStateChanged(async (user) => {
@@ -15,6 +19,7 @@ export const useCheckIsNewUser = () => {
                 if (creationTime === lastSignInTime) {
                     setIsNewUser (true);
                     console.log('new user!!')
+                    navigate('/onboarding')
                 } else {
                     setIsNewUser(false);
                     console.log('not new user :(')
