@@ -14,7 +14,7 @@ export const ButtonSecondary = ({text, onClick}) => {
 }
 export const ButtonCard = ({text, onClick}) => {
     return (
-        <div className="h-28 w-full p-2 px-4 bg-blue-100 rounded-xl hover:cursor-pointer text-left flex items-center justify-between hover:bg-blue-200 transition-all" 
+        <div className="h-28 w-full p-2 px-4 bg-green-300 rounded-xl hover:cursor-pointer text-left flex items-center justify-between hover:bg-green-400 transition-all" 
         onClick={onClick}>
             <p className="text-lg font-medium">{text}</p>
             <ArrowForwardIcon />
