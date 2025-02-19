@@ -11,7 +11,7 @@ import { useState } from 'react'
 function App() {
 
   return (
-    <div className='h-screen'>
+    <div className='h-screen bg-slate-100'>
       <Router>
         <Routes>
           <Route path="/" exact element={<Auth/>}/>

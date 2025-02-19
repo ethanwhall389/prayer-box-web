@@ -13,9 +13,9 @@ export default function Header() {
 
 
     return (
-        <div className='flex justify-between w-full'>
+        <div className='bg-white flex justify-between w-full absolute p-8'>
             <h1 className='text-xl font-bold'>Welcome, {firstName}!</h1>
-            <div className="flex flex-col items-end gap-2">
+            <div className="flex justify-center items-center gap-2">
                 <p>{formatDate(new Date())}</p>
                 <ButtonIcon icon={<SettingsIcon style={{fontSize: '35px'}}/>} onClick={() => navigate('/settings')} />
             </div>
