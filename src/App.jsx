@@ -5,6 +5,7 @@ import Dashboard from './pages/dashboard/dashboard-index'
 import Onboarding from './pages/onboarding/onboarding-index'
 import ListEntire from './pages/list-entire/list-entire-index'
 import ListToday from './pages/list-today/list-today-index'
+import Settings from './pages/settings/settings-index'
 import { useState } from 'react'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard/>} />
           <Route path="/list-entire" element={<ListEntire/>}/>
           <Route path="/list-today" element={<ListToday/>}/>
+          <Route path="/settings" element={<Settings/>}/>
         </Routes>
       </Router>
     </div>

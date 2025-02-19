@@ -18,7 +18,7 @@ export default function Dashboard() {
         checkIsNewUser(setIsNewUser);
     }, [])
     
-    //need to update this to only run on user's first time
+    //only run when the user is a new user
     if (isNewUser) {
         addBox();
     }
