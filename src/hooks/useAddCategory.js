@@ -1,0 +1,34 @@
+import { updateDoc, doc, getDoc, } from "firebase/firestore";
+import { db } from "../config/firebase-config";
+import { useGetUserInfo } from "./useGetUserInfo";
+
+export const useAddCategory = () => {
+
+    const {userID} = useGetUserInfo();
+    const boxDocRef = doc(db, "boxes", userID);
+
+    async function addCategory(categoryName='New Category') {
+
+        try {
+            const docSnap = await getDoc(boxDocRef);
+            const existingCategories = docSnap.data().categories;
+
+            if (existingCategories.hasOwnProperty(categoryName)) {
+                alert('That category already exists')
+            } else {
+                await updateDoc(boxDocRef, {
+                    [`categories.${categoryName}`]: 
+                        {
+                            categoryDescription: 'HELLOO!!!...',
+                            cards: []
+                        }
+                    })
+            }
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
+    return {addCategory};
+}

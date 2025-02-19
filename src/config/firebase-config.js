@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider, EmailAuthProvider } from "firebase/auth";
@@ -24,6 +25,7 @@ const analytics = getAnalytics(app);
 export const auth = getAuth(app);
 export const providerGoogle = new GoogleAuthProvider();
 export const providerEmail = new EmailAuthProvider();
+export const db = getFirestore(app);
 
 // To deploy to hosting:
     // firebase login
