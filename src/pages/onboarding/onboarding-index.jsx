@@ -10,7 +10,7 @@ import { ButtonSecondary } from "../../components/Button";
 export default function Onboarding() {
     
     const navigate = useNavigate();
-    const {userID} = useGetUserInfo();
+    const {userID, firstName} = useGetUserInfo();
     const { addPremadeBox, addEmptyBox } = useAddBox();
 
     async function completeOnboarding() {
@@ -32,14 +32,18 @@ export default function Onboarding() {
     }
     
     return (
-        <>
-            <h1>Welcome, [name]!</h1>
-            <p>Thanks for checking our Prayer Box.</p>
-            <p>Would you like to use our suggested prayer categories, or start from scratch and create your own?</p>
-            <ButtonPrimary text={'Use suggested categories'} onClick={useSuggestedCategories}/>
-            <ButtonSecondary text={'Start from scratch'} onClick={startFromScratch}/>
-            
-            <button onClick={completeOnboarding}>Complete onboarding</button>
-        </>
+        <div className="h-screen flex flex-col justify-center items-center text-left">
+            <div className="max-w-2/3 flex flex-col gap-10">
+                <div className="flex flex-col gap-2">
+                    <h1 className="text-2xl font-bold">Welcome, {firstName}!</h1>
+                    <p>Thanks for checking out Prayer Box.</p>
+                    <p>Would you like to use our suggested prayer categories, or start from scratch and create your own?</p>
+                </div>
+                <div className="flex flex-col gap-3 w-full">
+                    <ButtonPrimary text={'Use suggested categories'} onClick={useSuggestedCategories}/>
+                    <ButtonSecondary text={'Start from scratch'} onClick={startFromScratch}/>
+                </div>
+            </div>
+        </div>
     )
 }
