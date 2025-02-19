@@ -7,7 +7,7 @@ export const useAddCard = () => {
     const {userID} = useGetUserInfo();
     const boxDocRef = doc(db, "boxes", userID);
 
-    async function addCard(categoryName='AGAIN', cardName='New Card', cardDescription='') {
+    async function addCard(categoryName='New Category', cardName='New Card', cardDescription='') {
 
         try {
             const docSnap = await getDoc(boxDocRef);
@@ -15,10 +15,14 @@ export const useAddCard = () => {
 
             const cardsArray = existingCategories[categoryName].cards;
             cardsArray.push({cardTitle: cardName, cardDescription: cardDescription});
-            await updateDoc(boxDocRef, {
-                [`categories.${categoryName}.cards`]: cardsArray
-                })
+            const currentCardCount = docSnap.data().totalCards;
 
+            await updateDoc(boxDocRef, {
+                [`categories.${categoryName}.cards`]: cardsArray,
+                totalCards: currentCardCount+1 
+                })
+            
+            
         } catch (error) {
             console.error("Caught an error: " + error);
         }

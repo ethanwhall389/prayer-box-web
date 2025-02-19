@@ -16,14 +16,16 @@ export const useAddCategory = () => {
             if (existingCategories.hasOwnProperty(categoryName)) {
                 alert('That category already exists')
             } else {
+                const currentCategoryCount = docSnap.data().totalCategories;
                 await updateDoc(boxDocRef, {
                     [`categories.${categoryName}`]: 
                         {
                             categoryDescription: 'HELLOO!!!...',
                             cards: []
-                        }
+                        },
+                    totalCategories: currentCategoryCount+1
                     })
-            }
+                }
         } catch (error) {
             console.error(error);
         }
