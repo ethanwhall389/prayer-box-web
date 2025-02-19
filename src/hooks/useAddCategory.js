@@ -21,6 +21,7 @@ export const useAddCategory = () => {
                     [`categories.${categoryName}`]: 
                         {
                             categoryDescription: 'HELLOO!!!...',
+                            categoryName: `${categoryName}`,
                             cards: []
                         },
                     totalCategories: currentCategoryCount+1

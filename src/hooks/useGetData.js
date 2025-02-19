@@ -18,5 +18,13 @@ export const useGetData = () => {
         return docSnap.data().totalCategories;
     }
 
-    return {getTotalCards, getTotalCategories}
+    const getCategories = async () => {
+        console.log('running getCategories');
+        const boxDocRef = doc(db, "boxes", userID);
+        const docSnap = await getDoc(boxDocRef);
+        console.log(docSnap.data().categories)
+        return docSnap.data().categories;
+    }
+
+    return {getTotalCards, getTotalCategories, getCategories}
 }

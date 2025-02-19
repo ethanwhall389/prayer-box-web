@@ -17,16 +17,18 @@ export const useAddBox = () => {
             totalCategories: 2,
             totalCards: 0,
             createdAt: serverTimestamp(),
-            categories: {
-                confession: {
+            categories: [
+                {
                     categoryDescription: 'Confession is...',
+                    categoryName: 'confession',
                     cards: []
                 },
-                thanksgiving: {
+                {
                     categoryDescription: 'Thanksgiving is...',
+                    categoryName: 'thanksgiving',
                     cards: []
                 }
-            }
+            ]
         })
     }
 
@@ -37,7 +39,7 @@ export const useAddBox = () => {
             totalCategories: 0,
             totalCards: 0,
             createdAt: serverTimestamp(),
-            categories: {}
+            categories: []
         })
     }
 
