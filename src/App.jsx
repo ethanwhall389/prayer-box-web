@@ -10,6 +10,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useGetData } from './hooks/useGetData'
 
+
 function App() {
 
   const [boxData, setBoxData] = useState([]);
@@ -32,7 +33,7 @@ function App() {
 
     fetchCategories();
 
-}, [])
+  }, [])
 
   return (
     <div className='h-screen bg-slate-100'>
@@ -40,9 +41,9 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Auth/>}/>
           <Route path="/onboarding" element={<Onboarding/>} />
-          <Route path="/dashboard" element={<Dashboard boxData={boxData} setBoxData={setBoxData} isLoading={isLoading}/>} />
-          <Route path="/list-entire" element={<ListEntire boxData={boxData} setBoxData={setBoxData} isLoading={isLoading}/>} />
-          <Route path="/list-today" element={<ListToday boxData={boxData} setBoxData={setBoxData} isLoading={isLoading}/>} />
+          <Route path="/dashboard" element={<Dashboard boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
+          <Route path="/list-entire" element={<ListEntire boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
+          <Route path="/list-today" element={<ListToday boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
           <Route path="/settings" element={<Settings/>}/>
         </Routes>
       </Router>
