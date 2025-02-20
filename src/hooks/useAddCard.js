@@ -2,25 +2,40 @@ import { updateDoc, doc, getDoc, } from "firebase/firestore";
 import { db } from "../config/firebase-config";
 import { useGetUserInfo } from "./useGetUserInfo";
 
-export const useAddCard = () => {
+export const useAddCard = (boxData, setBoxData) => {
 
     const {userID} = useGetUserInfo();
     const boxDocRef = doc(db, "boxes", userID);
 
-    async function addCard(categoryName='New Category', cardName='New Card', cardDescription='') {
+    async function addCard(categoryName='confession', cardName='New Card', cardDescription='') {
 
         try {
             const docSnap = await getDoc(boxDocRef);
             const existingCategories = docSnap.data().categories;
-
-            const cardsArray = existingCategories[categoryName].cards;
-            cardsArray.push({cardTitle: cardName, cardDescription: cardDescription});
             const currentCardCount = docSnap.data().totalCards;
 
+            const newCard = {cardTitle: cardName, cardDescription: cardDescription};
+
+            const updatedCategories = existingCategories.map((category) => (
+                category.categoryName === categoryName
+                ? {...category, cards: [...category.cards, newCard]}
+                : category
+            ))
+
             await updateDoc(boxDocRef, {
-                [`categories.${categoryName}.cards`]: cardsArray,
-                totalCards: currentCardCount+1 
-                })
+                categories: updatedCategories,
+                totalCards: currentCardCount+1,
+            })
+
+            setBoxData({...boxData, categories: updatedCategories, totalCards: currentCardCount+1})
+
+            // const cardsArray = existingCategories[categoryName].cards;
+            // cardsArray.push({cardTitle: cardName, cardDescription: cardDescription});
+
+            // await updateDoc(boxDocRef, {
+            //     [`categories.${categoryName}.cards`]: cardsArray,
+            //     totalCards: currentCardCount+1 
+            //     })
             
             
         } catch (error) {

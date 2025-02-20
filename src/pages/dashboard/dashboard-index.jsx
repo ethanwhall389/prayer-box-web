@@ -9,7 +9,7 @@ import { useGetData } from "../../hooks/useGetData";
 import { useState } from "react";
 
 
-export default function Dashboard() {
+export default function Dashboard({boxData, setBoxData}) {
 
     const navigate = useNavigate();
     const { addBox } = useAddBox();
@@ -18,9 +18,20 @@ export default function Dashboard() {
 
     const [totalCards, setTotalCards] = useState(0)
 
+    const {getBoxData} = useGetData();
+
+    // useEffect(() => {
+
+    //     async function fetchCategories() {
+    //         const data = await getBoxData();
+    //         setBoxData(data);
+    //     }
+    //     fetchCategories();
+
+    // }, [])
+
     useEffect(() => {
         checkIsNewUser();
-        setTotalCards(getTotalCards());
     }, [])
     
 
@@ -29,7 +40,7 @@ export default function Dashboard() {
             <Header />
             <div className="w-full h-full px-10 max-w-[850px] flex flex-col gap-5 justify-center items-start">
                 <p>Verse pertaining to prayer...</p>
-                <p>{totalCards} prayer cards in your box.</p>
+                <p>{boxData.totalCards} prayer cards in your box.</p>
                 <ButtonCard text={"View today's prayer list"} onClick={() => navigate('/list-today')}/>
                 <ButtonCard text={"View and edit your entire prayer list"} onClick={() => navigate('/list-entire')}/>
             </div>
