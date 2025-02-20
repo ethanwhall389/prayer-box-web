@@ -1,4 +1,4 @@
-import { getDoc, doc } from "firebase/firestore"
+import { getDoc, updateDoc, doc } from "firebase/firestore"
 import { db } from "../config/firebase-config"
 import { useGetUserInfo } from "./useGetUserInfo"
 
@@ -6,10 +6,18 @@ export const useGetData = () => {
 
     const {userID} = useGetUserInfo();
 
-    const getTotalCards = async () => {
+    const calculateTotalCards = async () => {
         const boxDocRef = doc(db, "boxes", userID);
         const docSnap = await getDoc(boxDocRef);
-        return docSnap.data().totalCards;
+        let counter = 0;
+        docSnap.data().categories.forEach((category) => {
+            counter += category.cards.length;
+        })
+        await updateDoc(boxDocRef, {
+            totalCards: counter
+        })
+        
+        return counter;
     }
     
     const getTotalCategories = async () => {
@@ -40,5 +48,5 @@ export const useGetData = () => {
         }
     }
 
-    return {getTotalCards, getTotalCategories, getBoxData}
+    return {calculateTotalCards, getTotalCategories, getBoxData}
 }

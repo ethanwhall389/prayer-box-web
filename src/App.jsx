@@ -15,9 +15,10 @@ function App() {
 
   const [boxData, setBoxData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const {getBoxData} = useGetData();
+  const {getBoxData, calculateTotalCards} = useGetData();
 
   useEffect(() => {
+    calculateTotalCards();
     getBoxData(setBoxData, setIsLoading)
   }, [])
 
