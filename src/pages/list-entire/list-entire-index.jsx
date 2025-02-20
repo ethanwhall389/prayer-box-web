@@ -23,9 +23,9 @@ export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading
 
 
     return (
-        <div className="h-screen flex flex-col items-center">
+        <div className="min-h-screen h-full flex flex-col items-center">
             <Header />
-            <div className="w-full h-full px-10 max-w-[850px] flex flex-col gap-5 justify-center items-start">
+            <div className="w-full h-full px-10 max-w-[850px] flex flex-col gap-5 justify-start mt-44 items-start">
             {isLoading &&
                 <Box sx={{ width: '100%' }}>
                     <LinearProgress/>

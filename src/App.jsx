@@ -23,7 +23,7 @@ function App() {
   }, [])
 
   return (
-    <div className='h-screen bg-slate-100'>
+    <div className='min-h-screen h-full w-full bg-slate-100'>
       <Router>
         <Routes>
           <Route path="/" exact element={<Auth/>}/>
