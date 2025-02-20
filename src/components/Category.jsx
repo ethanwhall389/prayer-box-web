@@ -1,4 +1,6 @@
 import Card from "./Card"
+import DeleteIcon from '@mui/icons-material/Delete';
+import { ButtonIcon } from './Button';
 
 export default function Category({category, boxData, setBoxData}) {
     return (
