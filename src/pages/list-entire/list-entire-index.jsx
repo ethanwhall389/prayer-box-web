@@ -25,26 +25,25 @@ export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading
     return (
         <div className="min-h-screen h-full flex flex-col items-center">
             <Header />
-            <div className="w-full h-full px-10 max-w-[850px] flex flex-col gap-5 justify-start mt-44 items-start">
             {isLoading &&
-                <Box sx={{ width: '100%' }}>
-                    <LinearProgress/>
-                </Box> 
+                <div className="w-full h-screen max-w-[850px] flex justify-center items-center">
+                    <Box sx={{ width: '100%' }}>
+                        <LinearProgress/>
+                    </Box> 
+                </div>
             }
             {!isLoading &&
-                <>
-                <h1 className="text-2xl font-bold">Your Prayer Box</h1>
-                <ButtonPrimary text={'Add new category'} onClick={() => addCategory()} />
-                <ButtonPrimary text={'Add new card'} onClick={() => addCard()} />
-                {boxData.categories.map((category) => {
-                    return (
-                        <Category key={category.categoryName} category={category} boxData={boxData} setBoxData={setBoxData}/>
-                    )
-                })}
-                </>
+                <div className="w-full h-full px-10 max-w-[850px] flex flex-col gap-5 justify-start mt-44 items-start">
+                    <h1 className="text-2xl font-bold">Your Prayer Box</h1>
+                    <ButtonPrimary text={'Add new category'} onClick={() => addCategory()} />
+                    {boxData.categories.map((category) => {
+                        return (
+                            <Category key={category.categoryName} category={category} boxData={boxData} setBoxData={setBoxData}/>
+                        )
+                    })}
+                </div>
             }
                 
-            </div>
         </div>
     )
 }

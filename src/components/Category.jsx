@@ -13,7 +13,12 @@ export default function Category({category, boxData, setBoxData}) {
     return (
         <div className="bg-white p-4 w-full flex flex-col items-start gap-4 rounded-lg">
             <p className="text-xl">{category.categoryName}</p>
-            <p>{category.categoryDescription}</p>
+            <div className="pb-2 w-full border-b-2 border-slate-100 flex justify-start">
+                <p>{category.categoryDescription}</p>
+            </div>
+            {category.cards.length <= 0 &&
+                <h1>No cards in this category. Add one below to begin</h1>
+            }
             {category.cards.map((card) => {
                 return (
                     <Card key={card.name} cardInfo={card} categoryName={category.categoryName} boxData={boxData} setBoxData={setBoxData}/>

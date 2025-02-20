@@ -13,11 +13,6 @@ export default function Dashboard({boxData, setBoxData, isLoading, setIsLoading}
 
     const navigate = useNavigate();
     const {checkIsNewUser} = useCheckIsNewUser();
-    const {getBoxData} = useGetData();
-
-    // useEffect(() => {
-    //     getBoxData(setBoxData, setIsLoading)
-    //   }, [])
 
     useEffect(() => {
         checkIsNewUser();
@@ -38,7 +33,7 @@ export default function Dashboard({boxData, setBoxData, isLoading, setIsLoading}
                     <p>Verse pertaining to prayer...</p>
                     <p>{boxData.totalCards} prayer cards in your box.</p>
                     <ButtonCard text={"View today's prayer list"} onClick={() => navigate('/list-today')}/>
-                    <ButtonCard text={"View and edit your entire prayer list"} onClick={() => navigate('/list-entire')}/>
+                    <ButtonCard text={"View and edit your prayer box"} onClick={() => navigate('/list-entire')}/>
                 </>
             }
         </div>
