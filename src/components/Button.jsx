@@ -21,8 +21,13 @@ export const ButtonCard = ({text, onClick}) => {
         </div>
     )
 }
-export const ButtonIcon = ({icon, onClick}) => {
+export const ButtonIcon = ({icon, rotate, onClick}) => {
+    if (rotate) {
+        return (
+            <div className='hover:cursor-pointer hover:rotate-45 transition-all' onClick={onClick}>{icon}</div>
+        ) 
+    }
     return (
-        <div className='hover:cursor-pointer hover:rotate-45 transition-all' onClick={onClick}>{icon}</div>
+        <div className='hover:cursor-pointer transition-all' onClick={onClick}>{icon}</div>
     )
 }

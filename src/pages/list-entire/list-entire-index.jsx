@@ -14,6 +14,7 @@ export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading
 
     const {addCategory} = useAddCategory(boxData, setBoxData);
     const {addCard} = useAddCard(boxData, setBoxData);
+
     const {getBoxData} = useGetData();
 
     // useEffect(() => {
@@ -24,7 +25,7 @@ export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading
     return (
         <div className="h-screen flex flex-col items-center">
             <Header />
-            <div className="w-full h-full px-10 max-w-[850px] flex flex-col gap-5 justify-center items-center">
+            <div className="w-full h-full px-10 max-w-[850px] flex flex-col gap-5 justify-center items-start">
             {isLoading &&
                 <Box sx={{ width: '100%' }}>
                     <LinearProgress/>
@@ -32,12 +33,12 @@ export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading
             }
             {!isLoading &&
                 <>
-                <h1>Hello from entire list!</h1>
+                <h1 className="text-2xl font-bold">Your Prayer Box</h1>
                 <ButtonPrimary text={'Add new category'} onClick={() => addCategory()} />
                 <ButtonPrimary text={'Add new card'} onClick={() => addCard()} />
                 {boxData.categories.map((category) => {
                     return (
-                        <Category key={category.categoryName} category={category}/>
+                        <Category key={category.categoryName} category={category} boxData={boxData} setBoxData={setBoxData}/>
                     )
                 })}
                 </>
