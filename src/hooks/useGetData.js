@@ -22,7 +22,7 @@ export const useGetData = () => {
         console.log('running getCategories');
         const boxDocRef = doc(db, "boxes", userID);
         const docSnap = await getDoc(boxDocRef);
-        console.log(docSnap.data().categories)
+        //console.log('docSnap: ', docSnap.data().categories)
         return docSnap.data().categories;
     }
 

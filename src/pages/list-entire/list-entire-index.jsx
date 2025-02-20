@@ -11,12 +11,17 @@ export default function ListEntire() {
 
     const {addCategory} = useAddCategory();
     const {addCard} = useAddCard();
-    const [categories, setCategories] = useState(null);
+    const [categories, setCategories] = useState([]);
     const {getCategories} = useGetData();
 
     useEffect(() => {
-        setCategories(getCategories());
-        console.log(categories);
+
+        async function fetchCategories() {
+            const categoriesArray = await getCategories();
+            setCategories(categoriesArray);
+        }
+        fetchCategories();
+        
     }, [])
 
     return (
@@ -27,7 +32,9 @@ export default function ListEntire() {
                 <ButtonPrimary text={'Add new category'} onClick={() => addCategory()}/>
                 <ButtonPrimary text={'Add new card'} onClick={() => addCard()}/>
                 {categories && categories.map((category) => {
-                    <h1>{category.categoryName}</h1>
+                    return (
+                        <h1>{category.categoryName}</h1>
+                    )
                 })}
                 <div className="bg-white p-4 w-full flex flex-col items-start gap-4">
                     <p className="text-xl">Category Name</p>
