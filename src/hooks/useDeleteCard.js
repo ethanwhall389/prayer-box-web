@@ -9,13 +9,15 @@ export default function useDeleteCard(boxData, setBoxData) {
 
     async function deleteCard(categoryName, cardName='') {
 
+        const existingCategories = boxData.categories;
         const tempBoxData = boxData;
+        const currentCardCount = boxData.totalCards;
 
         try {
             
-            const docSnap = await getDoc(boxDocRef);
-            const existingCategories = docSnap.data().categories;
-            const currentCardCount = docSnap.data().totalCards;
+            // const docSnap = await getDoc(boxDocRef);
+            // const existingCategories = docSnap.data().categories;
+            // const currentCardCount = docSnap.data().totalCards;
 
             console.log(existingCategories);
 
@@ -37,7 +39,7 @@ export default function useDeleteCard(boxData, setBoxData) {
 
         } catch (err) {
             console.error(err)
-            setBoxData(tempBoxData);
+            setBoxData({...tempBoxData, totalCards: currentCardCount+1});
         }
     }
 

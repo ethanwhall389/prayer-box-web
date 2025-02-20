@@ -8,14 +8,11 @@ export const useAddCard = (boxData, setBoxData) => {
     const boxDocRef = doc(db, "boxes", userID);
 
     async function addCard(categoryName='confession', cardName='New Card2', cardDescription='', setMessage) {
-        const docSnap = await getDoc(boxDocRef);
-        const existingCategories = docSnap.data().categories;
-        const currentCardCount = docSnap.data().totalCards;
+    
 
-
-        // existingCategories.filter((currentCat) => {
-        //     currentCat.cards
-        // })
+        const existingCategories = boxData.categories;
+        const tempBoxData = boxData;
+        const currentCardCount = boxData.totalCards;
               
         try {
 
@@ -40,11 +37,11 @@ export const useAddCard = (boxData, setBoxData) => {
             })
 
             if (!cardExists) {
+                setBoxData({...boxData, categories: updatedCategories, totalCards: currentCardCount+1})
                 await updateDoc(boxDocRef, {
                     categories: updatedCategories,
                     totalCards: currentCardCount+1,
                 })
-                setBoxData({...boxData, categories: updatedCategories, totalCards: currentCardCount+1})
             }
 
 
@@ -52,6 +49,7 @@ export const useAddCard = (boxData, setBoxData) => {
             
         } catch (error) {
             console.error("Caught an error: " + error);
+            setBoxData({...tempBoxData, totalCards: currentCardCount-1});
         }
 
     }
