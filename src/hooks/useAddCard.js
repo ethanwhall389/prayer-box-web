@@ -8,10 +8,10 @@ export const useAddCard = (boxData, setBoxData) => {
     const boxDocRef = doc(db, "boxes", userID);
 
     async function addCard(categoryName='confession', cardName='New Card2', cardDescription='') {
-
         const docSnap = await getDoc(boxDocRef);
         const existingCategories = docSnap.data().categories;
         const currentCardCount = docSnap.data().totalCards;
+
 
         // existingCategories.filter((currentCat) => {
         //     currentCat.cards
@@ -19,12 +19,15 @@ export const useAddCard = (boxData, setBoxData) => {
               
         try {
 
-            const newCard = {cardTitle: cardName, cardDescription: cardDescription};
+            let cardExists = false;
 
+            const newCard = {cardTitle: cardName, cardDescription: cardDescription};
+            
             const updatedCategories = existingCategories.map((currentCat) => {
                 if (currentCat.categoryName === categoryName) {
 
                     if (currentCat.cards.some((card) => card.cardTitle === cardName)) {
+                        cardExists = true;
                         alert ('This card already exists');
                         return
                     }
@@ -33,12 +36,15 @@ export const useAddCard = (boxData, setBoxData) => {
                 return currentCat               
             })
 
-            await updateDoc(boxDocRef, {
-                categories: updatedCategories,
-                totalCards: currentCardCount+1,
-            })
+            if (!cardExists) {
+                await updateDoc(boxDocRef, {
+                    categories: updatedCategories,
+                    totalCards: currentCardCount+1,
+                })
+                setBoxData({...boxData, categories: updatedCategories, totalCards: currentCardCount+1})
+            }
 
-            setBoxData({...boxData, categories: updatedCategories, totalCards: currentCardCount+1})
+
             
             
         } catch (error) {
