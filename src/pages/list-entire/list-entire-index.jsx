@@ -1,4 +1,5 @@
 import { ButtonPrimary } from "../../components/Button"
+import Category from "../../components/Category";
 import { useAddCategory } from "../../hooks/useAddCategory"
 import { useAddCard } from "../../hooks/useAddCard";
 import { useGetData } from "../../hooks/useGetData";
@@ -21,7 +22,7 @@ export default function ListEntire() {
             setCategories(categoriesArray);
         }
         fetchCategories();
-        
+
     }, [])
 
     return (
@@ -33,16 +34,10 @@ export default function ListEntire() {
                 <ButtonPrimary text={'Add new card'} onClick={() => addCard()}/>
                 {categories && categories.map((category) => {
                     return (
-                        <h1>{category.categoryName}</h1>
+                        <Category key={category.categoryName} category={category}/>
                     )
                 })}
-                <div className="bg-white p-4 w-full flex flex-col items-start gap-4">
-                    <p className="text-xl">Category Name</p>
-                    <div className="bg-slate-100 w-full p-4 flex flex-col items-start">
-                        <p className="text-lg">Card Name</p>
-                        <p>Card description goes here, blah blah blah</p>
-                    </div>
-                </div>
+                
             </div>
         </div>
     )
