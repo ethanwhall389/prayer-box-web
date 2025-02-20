@@ -1,12 +1,9 @@
 import { ButtonCard} from "../../components/Button"
 import Header from '../../components/Header';
-
 import { useNavigate } from 'react-router-dom';
-import { useAddBox } from "../../hooks/useAddBox"
 import { useEffect } from 'react';
 import { useCheckIsNewUser } from '../../hooks/useCheckIsNewUser';
 import { useGetData } from "../../hooks/useGetData";
-import { useState } from "react";
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 
@@ -15,31 +12,12 @@ import Box from '@mui/material/Box';
 export default function Dashboard({boxData, setBoxData, isLoading, setIsLoading}) {
 
     const navigate = useNavigate();
-    const { addBox } = useAddBox();
     const {checkIsNewUser} = useCheckIsNewUser();
-    const {getTotalCards} = useGetData();  
-
-    const [totalCards, setTotalCards] = useState(0)
-
     const {getBoxData} = useGetData();
 
-    useEffect(() => {
-    
-        async function fetchCategories() {
-          setIsLoading(true);
-          try {
-            const data = await getBoxData();
-            setBoxData(data);
-          } catch (error) {
-            console.error(error);
-          } finally {
-            setIsLoading(false);
-          }
-        }
-    
-        fetchCategories();
-    
-    }, [])
+    // useEffect(() => {
+    //     getBoxData(setBoxData, setIsLoading)
+    //   }, [])
 
     useEffect(() => {
         checkIsNewUser();

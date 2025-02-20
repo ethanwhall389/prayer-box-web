@@ -16,25 +16,10 @@ export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading
     const {addCard} = useAddCard(boxData, setBoxData);
     const {getBoxData} = useGetData();
 
-    useEffect(() => {
-    
-        async function fetchCategories() {
-          setIsLoading(true);
-          try {
-            const data = await getBoxData();
-            setBoxData(data);
-          } catch (error) {
-            console.error(error);
-          } finally {
-            setIsLoading(false);
-          }
-        }
-    
-        fetchCategories();
-    
-      }, [])
+    // useEffect(() => {
+    //     getBoxData(setBoxData, setIsLoading)
+    // }, [])
 
-    console.log (boxData);
 
     return (
         <div className="h-screen flex flex-col items-center">

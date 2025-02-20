@@ -18,12 +18,26 @@ export const useGetData = () => {
         return docSnap.data().totalCategories;
     }
 
-    const getBoxData = async () => {
-        console.log('running getCategories');
+    let counter = 0;
+
+    const getBoxData = async (setBoxData, setIsLoading) => {
+
+        counter++;
+        console.log('getting data: ' + counter);
+        
         const boxDocRef = doc(db, "boxes", userID);
         const docSnap = await getDoc(boxDocRef);
-        console.log('docSnap: ', docSnap.data())
-        return docSnap.data();
+        // console.log('docSnap: ', docSnap.data())
+        
+        setIsLoading(true);
+        try {
+            const data = docSnap.data();
+            setBoxData(data);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     return {getTotalCards, getTotalCategories, getBoxData}

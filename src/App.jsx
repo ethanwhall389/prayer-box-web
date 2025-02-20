@@ -18,21 +18,7 @@ function App() {
   const {getBoxData} = useGetData();
 
   useEffect(() => {
-
-    async function fetchCategories() {
-      setIsLoading(true);
-      try {
-        const data = await getBoxData();
-        setBoxData(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchCategories();
-
+    getBoxData(setBoxData, setIsLoading)
   }, [])
 
   return (

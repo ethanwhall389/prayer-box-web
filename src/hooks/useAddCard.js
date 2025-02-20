@@ -7,7 +7,7 @@ export const useAddCard = (boxData, setBoxData) => {
     const {userID} = useGetUserInfo();
     const boxDocRef = doc(db, "boxes", userID);
 
-    async function addCard(categoryName='confession', cardName='New Card', cardDescription='') {
+    async function addCard(categoryName='confession', cardName='New Card2', cardDescription='') {
 
         try {
             const docSnap = await getDoc(boxDocRef);
@@ -28,14 +28,6 @@ export const useAddCard = (boxData, setBoxData) => {
             })
 
             setBoxData({...boxData, categories: updatedCategories, totalCards: currentCardCount+1})
-
-            // const cardsArray = existingCategories[categoryName].cards;
-            // cardsArray.push({cardTitle: cardName, cardDescription: cardDescription});
-
-            // await updateDoc(boxDocRef, {
-            //     [`categories.${categoryName}.cards`]: cardsArray,
-            //     totalCards: currentCardCount+1 
-            //     })
             
             
         } catch (error) {
