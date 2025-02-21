@@ -1,4 +1,4 @@
-import { updateDoc, doc, getDoc, } from "firebase/firestore";
+import { updateDoc, doc, getDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../config/firebase-config";
 import { useGetUserInfo } from "./useGetUserInfo";
 
@@ -18,7 +18,8 @@ export const useAddCard = (boxData, setBoxData) => {
 
             let cardExists = false;
 
-            const newCard = {cardTitle: cardName, cardDescription: cardDescription};
+            const timestamp = new Date().toISOString();
+            const newCard = {cardTitle: cardName, cardDescription: cardDescription, createdAt: timestamp};
             
             const updatedCategories = existingCategories.map((currentCat) => {
                 if (currentCat.categoryName === categoryName) {
@@ -44,9 +45,6 @@ export const useAddCard = (boxData, setBoxData) => {
                 })
             }
 
-
-            
-            
         } catch (error) {
             console.error("Caught an error: " + error);
             setBoxData({...tempBoxData, totalCards: currentCardCount-1});
