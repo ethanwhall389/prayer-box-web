@@ -1,18 +1,25 @@
 import Card from "./Card"
 import AddCardField from "./AddCardField";
 
+import { ButtonSecondary } from "./Button";
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ButtonIcon } from './Button';
 import { useState } from "react";
 
-export default function Category({category, boxData, setBoxData}) {
+export default function Category({category, boxData, setBoxData, setModalInfo, setModalOpen}) {
 
-
-
+    function showModal() {
+        setModalInfo({name: category.categoryName, description: category.categoryDescription})
+        setModalOpen(true);
+    }
 
     return (
         <div className="bg-white p-4 w-full flex flex-col items-start gap-4 rounded-lg">
-            <p className="text-xl">{category.categoryName}</p>
+            <div className=" flex w-full justify-between items-center">
+                <p className="text-xl">{category.categoryName}</p>
+                <ButtonSecondary text={'Edit Category'} onClick={showModal}/>
+            </div>
             <div className="pb-2 w-full border-b-2 border-slate-100 flex justify-start">
                 <p>{category.categoryDescription}</p>
             </div>

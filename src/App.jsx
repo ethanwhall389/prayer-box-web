@@ -23,7 +23,8 @@ function App() {
   }, [])
 
   return (
-    <div className='min-h-screen h-full w-full bg-slate-100 pb-16'>
+    <>
+    <div className='min-h-screen h-full w-full bg-slate-100 pb-20'>
       <Router>
         <Routes>
           <Route path="/" exact element={<Auth/>}/>
@@ -35,6 +36,7 @@ function App() {
         </Routes>
       </Router>
     </div>
+    </>
   )
 }
 
