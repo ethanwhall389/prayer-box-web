@@ -1,26 +1,19 @@
-import { updateDoc, doc, getDoc } from "firebase/firestore";
+import { updateDoc, doc, getDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../config/firebase-config";
 import { useGetUserInfo } from "./useGetUserInfo";
 
-export const useAddCard = (boxData, setBoxData) => {
+export const useUpdateCard = (boxData, setBoxData) => {
 
     const {userID} = useGetUserInfo();
     const boxDocRef = doc(db, "boxes", userID);
 
-    async function addCard(categoryName='confession', cardName='New Card2', cardDescription='', setMessage) {
-    
+    const updateCard = async (categoryName, cardName, cardDescription, setMessage) => {
 
         const existingCategories = boxData.categories;
         const tempBoxData = boxData;
-        const currentCardCount = boxData.totalCards;
-              
+
         try {
 
-            let cardExists = false;
-
-            const timestamp = new Date().toISOString();
-            const newCard = {cardTitle: cardName, cardDescription: cardDescription, createdAt: timestamp};
-            
             //Check if card already exists
             const updatedCategories = existingCategories.map((currentCat) => {
                 if (currentCat.categoryName === categoryName) {
@@ -33,6 +26,8 @@ export const useAddCard = (boxData, setBoxData) => {
                         }, 2000)
                         return
                     }
+
+                    //LEFT OFF HERE: figure out how to update just the card
                     return {...currentCat, cards: [...currentCat.cards, newCard]}
                 }
                 return currentCat               
@@ -47,11 +42,10 @@ export const useAddCard = (boxData, setBoxData) => {
             }
 
         } catch (error) {
-            console.error("Caught an error: " + error);
-            setBoxData({...tempBoxData, totalCards: currentCardCount-1});
+            console.error(error);
         }
 
     }
 
-    return {addCard};
+    return {updateCard}
 }
