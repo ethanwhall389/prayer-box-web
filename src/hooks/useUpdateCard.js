@@ -7,18 +7,23 @@ export const useUpdateCard = (boxData, setBoxData) => {
     const {userID} = useGetUserInfo();
     const boxDocRef = doc(db, "boxes", userID);
 
-    const updateCard = async (categoryName, cardName, cardDescription, setMessage) => {
+    const updateCard = async (categoryName, oldCardName, newCardName, cardDescription, setMessage) => {
 
         const existingCategories = boxData.categories;
         const tempBoxData = boxData;
 
         try {
 
-            //Check if card already exists
+            let cardExists = false;
+
+            //map over array
+                // if we're in the correct category...
+                    // iterate through each card in the category and find proper card
+                    // update card info
             const updatedCategories = existingCategories.map((currentCat) => {
                 if (currentCat.categoryName === categoryName) {
-
-                    if (currentCat.cards.some((card) => card.cardTitle === cardName)) {
+                    //Check if card already exists
+                    if (currentCat.cards.some((card) => card.cardTitle === newCardName)) {
                         cardExists = true;
                         setMessage('This card already exists');
                         setTimeout(() => {
@@ -27,22 +32,31 @@ export const useUpdateCard = (boxData, setBoxData) => {
                         return
                     }
 
-                    //LEFT OFF HERE: figure out how to update just the card
-                    return {...currentCat, cards: [...currentCat.cards, newCard]}
+                    const updatedCards = currentCat.cards.map((card) => {
+                        if (card.cardTitle === oldCardName) {
+                            return {...card, cardTitle: newCardName, cardDescription: cardDescription}
+                        }
+                        return card;
+                    })
+
+                    //return the whole category with updated cards
+                    return {...currentCat, cards: updatedCards}
                 }
+                //return the whole category as is
                 return currentCat               
             })
 
             if (!cardExists) {
-                setBoxData({...boxData, categories: updatedCategories, totalCards: currentCardCount+1})
+                await setBoxData({...boxData, categories: updatedCategories});
+                //console.log(boxData);
                 await updateDoc(boxDocRef, {
-                    categories: updatedCategories,
-                    totalCards: currentCardCount+1,
+                    categories: updatedCategories
                 })
             }
 
         } catch (error) {
-            console.error(error);
+            console.error("Caught an error: " + error);
+            setBoxData({...tempBoxData});
         }
 
     }

@@ -1,15 +1,15 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useAddCard } from "../hooks/useAddCard";
 import { useState } from 'react';
-import Message from "../components/Message";
 
-export default function AddCardField({categoryName, boxData, setBoxData}) {
+
+export default function AddCardField({categoryName, boxData, setBoxData, message, setMessage}) {
 
     const {addCard} = useAddCard(boxData, setBoxData);
     const [cardNameInput, setCardNameInput] = useState('');
     const [cardDescriptionInput, setCardDescriptionInput] = useState('');
 
-    const [message, setMessage] = useState();
+    //const [message, setMessage] = useState();
 
     async function onSubmit(e) {
         e.preventDefault();
@@ -30,7 +30,7 @@ export default function AddCardField({categoryName, boxData, setBoxData}) {
                     <button type="submit" className="hidden"></button>
                 </form>
             </div>
-            {message && <Message messageText={message} messageType={false}/>}
+            {/* {message && <Message messageText={message} messageType={false}/>} */}
         </div>
     )
 }

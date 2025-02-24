@@ -6,9 +6,12 @@ import { ButtonSecondary } from "./Button";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ButtonIcon } from './Button';
 import { useState } from "react";
+import Message from "../components/Message";
 
 export default function Category({category, boxData, setBoxData, setModalInfo, setModalOpen}) {
 
+    const [message, setMessage] = useState();
+    
     function showModal() {
         setModalInfo({name: category.categoryName, description: category.categoryDescription})
         setModalOpen(true);
@@ -28,10 +31,11 @@ export default function Category({category, boxData, setBoxData, setModalInfo, s
             }
             {category.cards.map((card) => {
                 return (
-                    <Card key={card.name} cardInfo={card} categoryName={category.categoryName} boxData={boxData} setBoxData={setBoxData}/>
+                    <Card key={card.name} cardInfo={card} categoryName={category.categoryName} boxData={boxData} setBoxData={setBoxData} message={message} setMessage={setMessage}/>
                 )
             })}
-            <AddCardField categoryName={category.categoryName} boxData={boxData} setBoxData={setBoxData}/>
+            <AddCardField categoryName={category.categoryName} boxData={boxData} setBoxData={setBoxData} message={message} setMessage={setMessage}/>
+            {message && <Message messageText={message} messageType={false}/>}
 
         </div>
     )
