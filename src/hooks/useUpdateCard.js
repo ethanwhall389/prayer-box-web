@@ -7,7 +7,7 @@ export const useUpdateCard = (boxData, setBoxData) => {
     const {userID} = useGetUserInfo();
     const boxDocRef = doc(db, "boxes", userID);
 
-    const updateCard = async (categoryName, oldCardName, newCardName, cardDescription, setMessage) => {
+    const updateCard = async (categoryName, oldCardName, newCardName, cardDescription, setMessage, setMessageType) => {
 
         const existingCategories = boxData.categories;
         const tempBoxData = boxData;
@@ -25,10 +25,11 @@ export const useUpdateCard = (boxData, setBoxData) => {
                     //Check if card already exists
                     if (currentCat.cards.some((card) => card.cardTitle === newCardName)) {
                         cardExists = true;
+                        setMessageType('error');
                         setMessage('This card already exists');
-                        setTimeout(() => {
-                            setMessage();
-                        }, 2000)
+                        // setTimeout(() => {
+                        //     setMessage();
+                        // }, 2000)
                         return
                     }
 
@@ -48,11 +49,16 @@ export const useUpdateCard = (boxData, setBoxData) => {
 
             if (!cardExists) {
                 await setBoxData({...boxData, categories: updatedCategories});
+                setMessageType('truthy');
+                setMessage('Updated');
                 //console.log(boxData);
                 await updateDoc(boxDocRef, {
                     categories: updatedCategories
                 })
+                return true
             }
+            
+            return false
 
         } catch (error) {
             console.error("Caught an error: " + error);

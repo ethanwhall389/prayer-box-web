@@ -11,7 +11,7 @@ import Modal from "../../components/Modal";
 
 import Header from "../../components/Header";
 
-export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading}) {
+export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading, setMessage, setMessageType}) {
 
     const {addCategory} = useAddCategory(boxData, setBoxData);
     const {addCard} = useAddCard(boxData, setBoxData);
@@ -40,7 +40,7 @@ export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading
                     <ButtonPrimary text={'Add new category'} onClick={() => addCategory()} />
                     {boxData.categories.map((category) => {
                         return (
-                            <Category key={category.categoryName} category={category} boxData={boxData} setBoxData={setBoxData} setModalInfo={setModalInfo} setModalOpen={setModalOpen}/>
+                            <Category key={category.categoryName} category={category} boxData={boxData} setBoxData={setBoxData} setModalInfo={setModalInfo} setModalOpen={setModalOpen} setMessage={setMessage} setMessageType={setMessageType}/>
                         )
                     })}
                 </div>

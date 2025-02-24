@@ -5,7 +5,7 @@ import { useFormatDate } from '../hooks/useFormatDate';
 import { useEffect, useRef, useState } from 'react';
 import { useUpdateCard } from '../hooks/useUpdateCard';
 
-export default function Card({cardInfo, categoryName, boxData, setBoxData, message, setMessage}) {
+export default function Card({cardInfo, categoryName, boxData, setBoxData, message, setMessage, setMessageType}) {
 
     const {deleteCard} = useDeleteCard(boxData, setBoxData)
     const {formatDate} = useFormatDate();
@@ -25,7 +25,7 @@ export default function Card({cardInfo, categoryName, boxData, setBoxData, messa
     function handleSubmit(e) {
         console.log(e)
         e.preventDefault();
-        updateCard(categoryName, cardInfo.cardTitle, nameInput, descriptionInput, setMessage);
+        updateCard(categoryName, cardInfo.cardTitle, nameInput, descriptionInput, setMessage, setMessageType)
 
         if (formRef.current) {
             formRef.current.querySelectorAll("input, textarea").forEach((el) => {
