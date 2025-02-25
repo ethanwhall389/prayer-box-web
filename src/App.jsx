@@ -19,7 +19,7 @@ function App() {
 
   const [boxData, setBoxData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [message, setMessage] = useState('testing');
+  const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState('error');
   const [isAuth, setIsAuth] = useState(false);
 
