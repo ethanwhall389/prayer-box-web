@@ -23,7 +23,6 @@ export default function Card({cardInfo, categoryName, boxData, setBoxData, messa
     }, [cardInfo.cardTitle])
 
     function handleSubmit(e) {
-        console.log(e)
         e.preventDefault();
         updateCard(categoryName, cardInfo.cardTitle, nameInput, descriptionInput, setMessage, setMessageType)
 
@@ -49,9 +48,7 @@ export default function Card({cardInfo, categoryName, boxData, setBoxData, messa
                         <ButtonIcon icon={<DeleteIcon />} rotate={false} onClick={() => deleteCard(categoryName, cardInfo.cardTitle)}/>
                     </div>
                 </div>
-                {descriptionInput !== '' &&
-                    <textarea name="description" id="description" value={descriptionInput} onBlur={handleBlur} onChange={(e) => setDescriptionInput(e.target.value)} className='outline-none p-2 w-full resize-none rounded-lg focus:bg-slate-200'></textarea>
-                }
+                <textarea name="description" id="description" placeholder='What is this card about?' value={descriptionInput} onBlur={handleBlur} onChange={(e) => setDescriptionInput(e.target.value)} className='outline-none p-2 w-full resize-none rounded-lg focus:bg-slate-200'></textarea>
                 {/* <input type="text" id='name' value={descriptionInput} onChange={(e) => setDescriptionInput(e.target.value)} className='outline-none border-2 w-full'/> */}
                 {/* <p>{cardInfo.cardDescription}</p> */}
                 <div className='flex w-full justify-end'>
