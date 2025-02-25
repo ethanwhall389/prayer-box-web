@@ -3,9 +3,10 @@ import { signInWithPopup } from "firebase/auth"
 import {ButtonPrimary, ButtonSecondary} from "../../components/Button";
 import { useNavigate} from "react-router-dom";
 
-export default function Auth() {
+export default function Auth({setBoxData, setIsLoading, setIsAuth}) {
 
     const navigate = useNavigate();
+
     
     async function signInGoogle () {
         const results = await signInWithPopup(auth, providerGoogle);
@@ -16,6 +17,7 @@ export default function Auth() {
             isLoggedIn: true,
         }
         localStorage.setItem('auth', JSON.stringify(authInfo));
+        setIsAuth(true);
         navigate('/dashboard');
     }
 

@@ -1,10 +1,12 @@
 import { getDoc, updateDoc, doc } from "firebase/firestore"
 import { db } from "../config/firebase-config"
 import { useGetUserInfo } from "./useGetUserInfo"
+import { useEffect, useState } from "react"
 
 export const useGetData = () => {
 
     const {userID} = useGetUserInfo();
+
 
     const calculateTotalCards = async () => {
         const boxDocRef = doc(db, "boxes", userID);
@@ -29,6 +31,13 @@ export const useGetData = () => {
     let counter = 0;
 
     const getBoxData = async (setBoxData, setIsLoading) => {
+        console.log('getting data');
+
+        if (!userID) {
+            console.log('no user id');
+            setIsLoading(false);
+            return;
+        }
 
         counter++;
         console.log('getting data: ' + counter);
@@ -44,6 +53,7 @@ export const useGetData = () => {
         } catch (error) {
             console.error(error);
         } finally {
+            console.log('done getting data');
             setIsLoading(false);
         }
     }

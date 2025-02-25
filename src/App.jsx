@@ -10,21 +10,27 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useGetData } from './hooks/useGetData'
 import Message from './components/Message'
+import { useGetUserInfo } from './hooks/useGetUserInfo'
 
 
 function App() {
+
+  const {getBoxData} = useGetData();
 
   const [boxData, setBoxData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState('testing');
   const [messageType, setMessageType] = useState('error');
+  const [isAuth, setIsAuth] = useState(false);
 
-  const {getBoxData, calculateTotalCards} = useGetData();
+  const {isLoggedIn} = useGetUserInfo();
+
 
   useEffect(() => {
-    calculateTotalCards();
-    getBoxData(setBoxData, setIsLoading)
-  }, [])
+    if(isLoggedIn) {
+      getBoxData(setBoxData, setIsLoading)
+    }
+  }, [isAuth])
 
   return (
     <>
@@ -32,7 +38,7 @@ function App() {
       {message && <Message messageText={message} messageType={messageType} timeout={1000} setMessage={setMessage}/>}
       <Router>
         <Routes>
-          <Route path="/" exact element={<Auth/>}/>
+          <Route path="/" exact element={<Auth setBoxData={setBoxData} setIsLoading={setIsLoading} setIsAuth={setIsAuth}/>}/>
           <Route path="/onboarding" element={<Onboarding/>} />
           <Route path="/dashboard" element={<Dashboard boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
           <Route path="/list-entire" element={<ListEntire boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
