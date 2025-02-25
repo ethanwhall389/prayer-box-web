@@ -24,13 +24,12 @@ export const useUpdateCard = (boxData, setBoxData) => {
                 if (currentCat.categoryName === categoryName) {
                     //Check if card already exists
                     if (currentCat.cards.some((card) => card.cardTitle === newCardName)) {
-                        cardExists = true;
-                        setMessageType('error');
-                        setMessage('This card already exists');
-                        // setTimeout(() => {
-                        //     setMessage();
-                        // }, 2000)
-                        return
+                        if (oldCardName !== newCardName) {
+                            cardExists = true;
+                            setMessageType('error');
+                            setMessage('This card already exists');
+                            return
+                        }
                     }
 
                     const updatedCards = currentCat.cards.map((card) => {
@@ -49,6 +48,7 @@ export const useUpdateCard = (boxData, setBoxData) => {
 
             if (!cardExists) {
                 await setBoxData({...boxData, categories: updatedCategories});
+                console.log('Updated categories: ', updatedCategories);
                 setMessageType('truthy');
                 setMessage('Updated');
                 //console.log(boxData);

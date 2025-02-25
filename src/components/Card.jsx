@@ -22,14 +22,21 @@ export default function Card({cardInfo, categoryName, boxData, setBoxData, messa
         setDescriptionInput(cardInfo.cardDescription);
     }, [cardInfo.cardTitle])
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        updateCard(categoryName, cardInfo.cardTitle, nameInput, descriptionInput, setMessage, setMessageType)
+        await updateCard(categoryName, cardInfo.cardTitle, nameInput, descriptionInput, setMessage, setMessageType)
 
         if (formRef.current) {
             formRef.current.querySelectorAll("input, textarea").forEach((el) => {
               el.blur(); // Removes focus from input fields
             });
+        }
+    }
+
+    function handleTextAreaEnter(e) {
+        if (e.key === 'Enter') {
+            handleSubmit(e);
+            e.preventDefault();
         }
     }
 
@@ -48,7 +55,7 @@ export default function Card({cardInfo, categoryName, boxData, setBoxData, messa
                         <ButtonIcon icon={<DeleteIcon />} rotate={false} onClick={() => deleteCard(categoryName, cardInfo.cardTitle)}/>
                     </div>
                 </div>
-                <textarea name="description" id="description" placeholder='What is this card about?' value={descriptionInput} onBlur={handleBlur} onChange={(e) => setDescriptionInput(e.target.value)} className='outline-none p-2 w-full resize-none rounded-lg focus:bg-slate-200'></textarea>
+                <textarea name="description" id="description" placeholder='What is this card about?' value={descriptionInput} onBlur={handleBlur} onKeyDown={handleTextAreaEnter} onChange={(e) => setDescriptionInput(e.target.value)} className='outline-none p-2 w-full resize-none rounded-lg focus:bg-slate-200'></textarea>
                 {/* <input type="text" id='name' value={descriptionInput} onChange={(e) => setDescriptionInput(e.target.value)} className='outline-none border-2 w-full'/> */}
                 {/* <p>{cardInfo.cardDescription}</p> */}
                 <div className='flex w-full justify-end'>

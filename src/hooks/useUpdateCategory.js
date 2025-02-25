@@ -16,10 +16,12 @@ export const useUpdateCategory = (boxData, setBoxData) => {
             let categoryExists = false;
 
             if (existingCategories.some((cat) => cat.categoryName === newCategoryName)) {
-                categoryExists = true;
-                setMessageType('error');
-                setMessage('This category already exists');
-                return
+                if(oldCategoryName !== newCategoryName) {
+                    categoryExists = true;
+                    setMessageType('error');
+                    setMessage('This category already exists');
+                    return
+                }
             }
 
             const updatedCategories = existingCategories.map((cat) => {
