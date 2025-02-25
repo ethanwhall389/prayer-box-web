@@ -3,7 +3,7 @@ import { useAddCard } from "../hooks/useAddCard";
 import { useState } from 'react';
 
 
-export default function AddCardField({categoryName, boxData, setBoxData, message, setMessage}) {
+export default function AddCardField({categoryName, boxData, setBoxData, message, setMessage, setMessageType}) {
 
     const {addCard} = useAddCard(boxData, setBoxData);
     const [cardNameInput, setCardNameInput] = useState('');
@@ -13,7 +13,7 @@ export default function AddCardField({categoryName, boxData, setBoxData, message
 
     async function onSubmit(e) {
         e.preventDefault();
-        await addCard(categoryName, cardNameInput, cardDescriptionInput, setMessage);
+        await addCard(categoryName, cardNameInput, cardDescriptionInput, setMessage, setMessageType);
         setCardNameInput('');
         setCardDescriptionInput('');
     }
