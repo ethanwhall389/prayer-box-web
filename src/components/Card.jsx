@@ -4,6 +4,7 @@ import useDeleteCard from '../hooks/useDeleteCard';
 import { useFormatDate } from '../hooks/useFormatDate';
 import { useEffect, useRef, useState } from 'react';
 import { useUpdateCard } from '../hooks/useUpdateCard';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 
 export default function Card({cardInfo, categoryName, boxData, setBoxData, message, setMessage, setMessageType}) {
 
@@ -47,8 +48,10 @@ export default function Card({cardInfo, categoryName, boxData, setBoxData, messa
 
     return (
         <div className="bg-slate-100 w-full p-4 flex flex-col items-start group hover:cursor-pointer rounded-lg">
+            
             <form ref={formRef} onSubmit={(e) => handleSubmit(e)} action="" className='w-full h-full flex flex-col gap-2'>
-                <div className="flex w-full justify-between">
+                <div className="flex w-full justify-between items-center">
+                    <DescriptionOutlinedIcon fontSize='large'/>
                     <input type="text" id='name' value={nameInput} onBlur={handleBlur} onChange={(e) => setNameInput(e.target.value)} className='outline-none w-full text-lg font-bold focus:bg-slate-200 p-2 px-3 mr-4 rounded-lg'/>
                     {/* <p className="text-lg">{cardInfo.cardTitle}</p> */}
                     <div className='group-hover:opacity-100 opacity-0 transition-all'>
@@ -61,6 +64,7 @@ export default function Card({cardInfo, categoryName, boxData, setBoxData, messa
                 <div className='flex w-full justify-end'>
                     <p className='group-hover:opacity-100 opacity-0 transition-all'>{cardCreatedAt}</p>
                 </div>
+                
                 <button type='submit' className='hidden'></button>
             </form>
         </div>

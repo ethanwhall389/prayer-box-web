@@ -7,6 +7,7 @@ import { ButtonSecondary } from "./Button";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ButtonIcon } from './Button';
 import { useState, useRef } from "react";
+import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 
 export default function Category({category, boxData, setBoxData, setModalInfo, setModalOpen, setMessage, setMessageType}) {
     
@@ -47,7 +48,8 @@ export default function Category({category, boxData, setBoxData, setModalInfo, s
         <div className="bg-white p-4 w-full flex flex-col items-start gap-4 rounded-lg">
             <form ref={formRef} action="" onSubmit={(e) => handleSubmit(e)} className='w-full h-full flex flex-col gap-2'>
                 <div className=" flex w-full justify-between items-center">
-                    <input type="text" value={nameInput} onChange={((e) => setNameInput(e.target.value))} onBlur={handleBlur} className='outline-none w-full text-lg font-bold focus:bg-slate-200 p-2 px-3 mr-4 rounded-lg'/>
+                    <FolderOutlinedIcon fontSize='large'/>
+                    <input type="text" value={nameInput} onChange={((e) => setNameInput(e.target.value))} onBlur={handleBlur} className='outline-none w-full text-2xl font-bold focus:bg-slate-200 p-2 px-3 mr-4 rounded-lg'/>
                     {/* <p className="text-xl">{category.categoryName}</p> */}
                     {/* <ButtonSecondary text={'Edit Category'} onClick={showModal}/> */}
                 </div>
