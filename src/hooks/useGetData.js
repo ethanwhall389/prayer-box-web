@@ -31,20 +31,16 @@ export const useGetData = () => {
     let counter = 0;
 
     const getBoxData = async (setBoxData, setIsLoading) => {
-        console.log('getting data');
 
         if (!userID) {
-            console.log('no user id');
             setIsLoading(false);
             return;
         }
 
         counter++;
-        console.log('getting data: ' + counter);
         
         const boxDocRef = doc(db, "boxes", userID);
         const docSnap = await getDoc(boxDocRef);
-        // console.log('docSnap: ', docSnap.data())
         
         setIsLoading(true);
         try {
@@ -53,7 +49,6 @@ export const useGetData = () => {
         } catch (error) {
             console.error(error);
         } finally {
-            console.log('done getting data');
             setIsLoading(false);
         }
     }

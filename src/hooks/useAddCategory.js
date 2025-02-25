@@ -21,9 +21,6 @@ export const useAddCategory = (boxData, setBoxData) => {
             if (existingCategories.some((cat) => cat.categoryName === categoryName)) {
                 categoryExists = true;
                 setMessage('This category already exists');
-                setTimeout(() => {
-                    setMessage();
-                }, 2000)
                 return
             }
 

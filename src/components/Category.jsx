@@ -1,5 +1,6 @@
 import Card from "./Card"
 import AddCardField from "./AddCardField";
+import { useUpdateCategory } from "../hooks/useUpdateCategory";
 
 import { ButtonSecondary } from "./Button";
 
@@ -9,6 +10,7 @@ import { useState } from "react";
 
 export default function Category({category, boxData, setBoxData, setModalInfo, setModalOpen, setMessage, setMessageType}) {
     
+    const {updateCategory} = useUpdateCategory(boxData, setBoxData);
     const [nameInput, setNameInput] = useState(category.categoryName);
     const [descriptionInput, setDescriptionInput] = useState(category.categoryDescription);
     
@@ -19,6 +21,7 @@ export default function Category({category, boxData, setBoxData, setModalInfo, s
 
     function handleSubmit(e) {
         e.preventDefault();
+        updateCategory(category.categoryName, nameInput, descriptionInput, setMessage, setMessageType);
     }
 
     function handleBlur() {

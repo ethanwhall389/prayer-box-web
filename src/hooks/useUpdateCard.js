@@ -1,4 +1,4 @@
-import { updateDoc, doc, getDoc, serverTimestamp } from "firebase/firestore";
+import { updateDoc, doc } from "firebase/firestore";
 import { db } from "../config/firebase-config";
 import { useGetUserInfo } from "./useGetUserInfo";
 
