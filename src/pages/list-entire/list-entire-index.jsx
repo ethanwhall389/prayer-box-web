@@ -30,8 +30,7 @@ export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading
             }
             {!isLoading &&
                 <>
-                <div id="test" className="w-full h-full py-20 px-10 max-w-[850px] flex flex-col gap-5 justify-start items-start">
-                    {/* {modalOpen && <Modal modalInfo={modalInfo} setModalOpen={setModalOpen}/>} */}
+                <div className="w-full h-full py-20 px-10 max-w-[850px] flex flex-col gap-5 justify-start items-start">
                     <h1 className="text-2xl font-bold">Your Prayer Box</h1>
 
                     <div className="flex flex-col gap-2 items-start">
