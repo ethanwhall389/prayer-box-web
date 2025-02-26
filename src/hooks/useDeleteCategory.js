@@ -7,37 +7,38 @@ export default function useDeleteCard(boxData, setBoxData) {
     const {userID} = useGetUserInfo();
     const boxDocRef = doc(db, "boxes", userID);
 
-    async function deleteCard(categoryName, cardName='') {
-
+    async function deleteCategory(categoryName) {
+        
         const existingCategories = boxData.categories;
         const tempBoxData = boxData;
         const currentCardCount = boxData.totalCards;
+        const currentCategoryCount = boxData.totalCategories;
+
+        let categoryCardCount = 0;
 
         try {
 
-            //console.log(existingCategories);
-
             const updatedCategories = existingCategories.map((currentCat) => {
                 if (currentCat.categoryName === categoryName) {
-                    const filteredCat = currentCat.cards.filter((card) => card.cardTitle !== cardName);
-                    currentCat.cards = filteredCat;
-                    return currentCat
+                    categoryCardCount = currentCat.cards.length;
+                    return;
                 }
                 return currentCat
             })
 
-            setBoxData({...boxData, categories: updatedCategories, totalCards: currentCardCount+1})
+            setBoxData({...boxData, categories: updatedCategories, totalCategories: currentCategoryCount-1, totalCards: currentCardCount-categoryCardCount})
 
             await updateDoc(boxDocRef, {
                 categories: updatedCategories,
-                totalCards: currentCardCount-1,
+                totalCategories: currentCategoryCount-1,
+                totalCards: currentCardCount-categoryCardCount
             })
 
         } catch (err) {
             console.error(err)
-            setBoxData({...tempBoxData, totalCards: currentCardCount+1});
+            setBoxData({...tempBoxData, totalCategories: currentCategoryCount+1, totalCards: currentCardCount+categoryCardCount});
         }
     }
 
-    return {deleteCard}
+    return {deleteCategory}
 }
