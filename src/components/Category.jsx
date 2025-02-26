@@ -79,7 +79,7 @@ export default function Category({category, boxData, setBoxData, setMessage, set
                 </div>
             </form>
             {category.cards.length <= 0 &&
-                <h1>No cards in this category. Add one below to begin</h1>
+                <h1>No cards in this category. Add one below.</h1>
             }
             {category.cards.map((card) => {
                 return (
