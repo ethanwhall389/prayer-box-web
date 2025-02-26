@@ -1,7 +1,9 @@
+import Header from "../../components/Header";
+
 export default function ListToday() {
     return (
-        <>
-        <h1>Hello from today's list!</h1>
-        </>
+        <div className="h-full flex flex-col items-center">
+            <Header />
+        </div>
     )
 }

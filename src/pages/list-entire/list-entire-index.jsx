@@ -7,8 +7,6 @@ import { useState } from "react";
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import Modal from "../../components/Modal";
-
-
 import Header from "../../components/Header";
 
 export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading, setMessage, setMessageType}) {
