@@ -16,8 +16,8 @@ export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading
     const {addCategory} = useAddCategory(boxData, setBoxData);
     const {addCard} = useAddCard(boxData, setBoxData);
 
-    const [modalOpen, setModalOpen] = useState(false);
-    const [modalInfo, setModalInfo] = useState([]);
+    // const [modalOpen, setModalOpen] = useState(false);
+    // const [modalInfo, setModalInfo] = useState([]);
 
 
     return (
@@ -33,7 +33,7 @@ export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading
             {!isLoading &&
                 <>
                 <div id="test" className="w-full h-full py-20 px-10 max-w-[850px] flex flex-col gap-5 justify-start items-start">
-                    {modalOpen && <Modal modalInfo={modalInfo} setModalOpen={setModalOpen}/>}
+                    {/* {modalOpen && <Modal modalInfo={modalInfo} setModalOpen={setModalOpen}/>} */}
                     <h1 className="text-2xl font-bold">Your Prayer Box</h1>
 
                     <div className="flex flex-col gap-2 items-start">
@@ -46,7 +46,7 @@ export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading
                         <h1>You have no categories. Add one to begin.</h1>}
                     {boxData.categories.length >= 1 && boxData.categories.map((category) => {
                         return (
-                            <Category key={category.categoryName} category={category} boxData={boxData} setBoxData={setBoxData} setModalInfo={setModalInfo} setModalOpen={setModalOpen} setMessage={setMessage} setMessageType={setMessageType}/>
+                            <Category key={category.categoryName} category={category} boxData={boxData} setBoxData={setBoxData} setMessage={setMessage} setMessageType={setMessageType}/>
                         )
                     })}
                 </div>
