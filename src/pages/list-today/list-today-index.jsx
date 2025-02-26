@@ -16,7 +16,14 @@ export default function ListToday({boxData, setBoxData, isLoading, setIsLoading,
             {!isLoading &&
                 <div className="w-full h-full py-20 px-10 max-w-[850px] flex flex-col gap-5 justify-start items-start">
                     <h1 className="text-2xl font-bold">Today's Prayer List</h1>
-
+                    {boxData.listToday.cardsToday.map((category) => {
+                        return (
+                            <>
+                                <h1>{category.categoryName}</h1>
+                                <h1>{category.cardName}</h1>
+                            </>
+                        )
+                    })}
                     {/* map todays list here */}
                 </div>
             }
