@@ -1,6 +1,7 @@
 import Card from "./Card"
 import AddCardField from "./AddCardField";
 import { useUpdateCategory } from "../hooks/useUpdateCategory";
+import useDeleteCategory from "../hooks/useDeleteCategory";
 
 import { ButtonSecondary } from "./Button";
 
@@ -12,6 +13,7 @@ import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 export default function Category({category, boxData, setBoxData, setModalInfo, setModalOpen, setMessage, setMessageType}) {
     
     const {updateCategory} = useUpdateCategory(boxData, setBoxData);
+    const {deleteCategory} = useDeleteCategory(boxData, setBoxData);
     const [nameInput, setNameInput] = useState(category.categoryName);
     const [descriptionInput, setDescriptionInput] = useState(category.categoryDescription);
     const formRef = useRef(null);
@@ -45,11 +47,14 @@ export default function Category({category, boxData, setBoxData, setModalInfo, s
     }
 
     return (
-        <div className="bg-white p-4 w-full flex flex-col items-start gap-4 rounded-lg">
+        <div className="bg-white p-4 w-full flex flex-col items-start gap-4 rounded-lg group/category">
             <form ref={formRef} action="" onSubmit={(e) => handleSubmit(e)} className='w-full h-full flex flex-col gap-2'>
                 <div className=" flex w-full justify-between items-center">
                     <FolderOutlinedIcon fontSize='large'/>
                     <input type="text" value={nameInput} onChange={((e) => setNameInput(e.target.value))} onBlur={handleBlur} className='outline-none w-full text-2xl font-bold focus:bg-slate-200 p-2 px-3 mr-4 rounded-lg'/>
+                    <div className='group-hover/category:opacity-100 opacity-0 transition-all'>
+                        <ButtonIcon icon={<DeleteIcon />} rotate={false} onClick={() => deleteCategory(category.categoryName)}/>
+                    </div>
                     {/* <p className="text-xl">{category.categoryName}</p> */}
                     {/* <ButtonSecondary text={'Edit Category'} onClick={showModal}/> */}
                 </div>

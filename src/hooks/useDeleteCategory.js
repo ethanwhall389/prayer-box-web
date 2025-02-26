@@ -2,7 +2,7 @@ import { updateDoc, doc, getDoc, } from "firebase/firestore";
 import { db } from "../config/firebase-config";
 import { useGetUserInfo } from "./useGetUserInfo";
 
-export default function useDeleteCard(boxData, setBoxData) {
+export default function useDeleteCategory(boxData, setBoxData) {
 
     const {userID} = useGetUserInfo();
     const boxDocRef = doc(db, "boxes", userID);
@@ -18,13 +18,25 @@ export default function useDeleteCard(boxData, setBoxData) {
 
         try {
 
-            const updatedCategories = existingCategories.map((currentCat) => {
+            const updatedCategories = existingCategories.filter((currentCat) => {
                 if (currentCat.categoryName === categoryName) {
                     categoryCardCount = currentCat.cards.length;
+                    console.log('categoryCardCount', categoryCardCount)
                     return;
+                } else if (currentCat.categoryName !== categoryName) {
+                    return currentCat 
                 }
-                return currentCat
             })
+
+            // const updatedCategories = existingCategories.map((currentCat) => {
+            //     if (currentCat.categoryName === categoryName) {
+            //         categoryCardCount = currentCat.cards.length;
+            //         return;
+            //     }
+            //     return currentCat
+            // })
+
+            console.log('updatedCategories', updatedCategories)
 
             setBoxData({...boxData, categories: updatedCategories, totalCategories: currentCategoryCount-1, totalCards: currentCardCount-categoryCardCount})
 

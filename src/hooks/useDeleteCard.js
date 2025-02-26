@@ -26,7 +26,7 @@ export default function useDeleteCard(boxData, setBoxData) {
                 return currentCat
             })
 
-            setBoxData({...boxData, categories: updatedCategories, totalCards: currentCardCount+1})
+            setBoxData({...boxData, categories: updatedCategories, totalCards: currentCardCount-1})
 
             await updateDoc(boxDocRef, {
                 categories: updatedCategories,
