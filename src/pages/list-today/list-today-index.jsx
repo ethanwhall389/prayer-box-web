@@ -2,9 +2,13 @@ import Header from "../../components/Header";
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import CategoryStatic from "../../components/CategoryStatic";
+import { ButtonSecondary } from "../../components/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function ListToday({listToday, isLoading, setIsLoading, setMessage, setMessageType}) {
     
+    const navigate = useNavigate();
+
     return (
         <div className="h-full flex flex-col items-center">
             <Header />
@@ -18,6 +22,7 @@ export default function ListToday({listToday, isLoading, setIsLoading, setMessag
             {!isLoading &&
                 <div className="w-full h-full py-20 px-10 max-w-[850px] flex flex-col gap-5 justify-start items-start">
                     <h1 className="text-2xl font-bold">Today's Prayer List</h1>
+                    <ButtonSecondary text={'Edit your box'} onClick={() => navigate('/list-entire')}/>
                     {listToday.map((cat) => {
                         return (
                             <CategoryStatic key={cat.categoryName} catInfo={cat} cards={cat.cards}/>
