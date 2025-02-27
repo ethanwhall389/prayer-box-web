@@ -2,11 +2,8 @@ import { ButtonPrimary } from "../../components/Button"
 import Category from "../../components/Category";
 import { useAddCategory } from "../../hooks/useAddCategory"
 import { useAddCard } from "../../hooks/useAddCard";
-import { useGetData } from "../../hooks/useGetData";
-import { useState } from "react";
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
-import Modal from "../../components/Modal";
 import Header from "../../components/Header";
 
 export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading, setMessage, setMessageType}) {

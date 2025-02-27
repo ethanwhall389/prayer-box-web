@@ -1,7 +1,7 @@
 import Header from "../../components/Header";
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
-import CardStatic from '../../components/CardStatic'
+import CategoryStatic from "../../components/CategoryStatic";
 
 export default function ListToday({listToday, isLoading, setIsLoading, setMessage, setMessageType}) {
     
@@ -18,12 +18,10 @@ export default function ListToday({listToday, isLoading, setIsLoading, setMessag
             {!isLoading &&
                 <div className="w-full h-full py-20 px-10 max-w-[850px] flex flex-col gap-5 justify-start items-start">
                     <h1 className="text-2xl font-bold">Today's Prayer List</h1>
-                    {listToday.map((list) => {
+                    {listToday.map((cat) => {
                         return (
                             <>
-                                <h1>{list.categoryName}</h1>
-                                <p>{list.categoryDescription}</p>
-                                <CardStatic cardTitle={list.cardTitle} cardDescription={list.cardDescription} createdAt={list.createdAt} />
+                                <CategoryStatic catInfo={cat} cards={cat.cards}/>
                             </>
                         )
                     })}

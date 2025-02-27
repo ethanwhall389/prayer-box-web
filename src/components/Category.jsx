@@ -2,10 +2,7 @@ import CardEdit from "./CardEdit"
 import AddCardField from "./AddCardField";
 import { useUpdateCategory } from "../hooks/useUpdateCategory";
 import useDeleteCategory from "../hooks/useDeleteCategory";
-
-import { ButtonSecondary } from "./Button";
 import { ButtonPrimary, ButtonDanger } from "./Button";
-
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ButtonIcon } from './Button';
 import { useState, useRef } from "react";
