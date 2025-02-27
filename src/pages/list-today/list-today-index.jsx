@@ -23,7 +23,7 @@ export default function ListToday({listToday, isLoading, setIsLoading, setMessag
                 <div className="w-full h-full py-20 px-10 max-w-[850px] flex flex-col gap-5 justify-start items-start">
                     <h1 className="text-2xl font-bold">Today's Prayer List</h1>
                     <ButtonSecondary text={'Edit your box'} onClick={() => navigate('/list-entire')}/>
-                    {listToday.map((cat) => {
+                    {listToday.length > 0 && listToday.map((cat) => {
                         return (
                             <CategoryStatic key={cat.categoryName} catInfo={cat} cards={cat.cards}/>
                         )

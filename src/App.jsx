@@ -47,7 +47,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" exact element={<Auth setBoxData={setBoxData} setIsLoading={setIsLoading} setIsAuth={setIsAuth}/>}/>
-          <Route path="/onboarding" element={<Onboarding/>} />
+          <Route path="/onboarding" element={<Onboarding setBoxData={setBoxData} setIsLoading={setIsLoading}/>} />
           <Route path="/dashboard" element={<Dashboard boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
           <Route path="/list-entire" element={<ListEntire boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
           <Route path="/list-today" element={<ListToday listToday={listToday} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />

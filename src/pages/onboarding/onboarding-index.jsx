@@ -3,21 +3,24 @@ import { updateDoc, doc, getDoc, } from "firebase/firestore";
 import { db } from "../../config/firebase-config";
 import { useGetUserInfo } from "../../hooks/useGetUserInfo";
 import { useAddBox } from "../../hooks/useAddBox";
+import { useGetData } from "../../hooks/useGetData";
 
 import { ButtonPrimary } from "../../components/Button";
 import { ButtonSecondary } from "../../components/Button";
 
-export default function Onboarding() {
+export default function Onboarding({setBoxData, setIsLoading}) {
     
     const navigate = useNavigate();
     const {userID, firstName} = useGetUserInfo();
     const { addPremadeBox, addEmptyBox } = useAddBox();
+    const {getBoxData} = useGetData();
 
     async function completeOnboarding() {
         const boxDocRef = doc(db, "boxes", userID);
         await updateDoc(boxDocRef, {
             onboardingComplete: true,
         })
+        getBoxData(setBoxData, setIsLoading)
         navigate('/dashboard');
     }
 

@@ -8,6 +8,9 @@ export default function CategoryStatic ({catInfo, cards}) {
             {categoryDescription !== '' && 
                 <p className="w-full text-left">{categoryDescription}</p>
             }
+            {cards.length <= 0 &&
+                <p className="text-slate-500">No cards in this category</p>
+            }
             {cards.map((card) => {
                 const {cardDescription, cardTitle, createdAt} = card;
                 return (

@@ -45,9 +45,11 @@ export const useGetData = () => {
         try {
             const data = docSnap.data();
 
-            const updatedData = await calcCardOrder(data); // checks the db, updates listToday if necessary
-            setBoxData(updatedData); //set state
-            updateDoc(boxDocRef, {...updatedData})//update db doc
+            if (data) {
+                const updatedData = await calcCardOrder(data); // checks the db, updates listToday if necessary
+                setBoxData(updatedData); //set state
+                updateDoc(boxDocRef, {...updatedData})//update db doc
+            }
         } catch (error) {
             console.error(error);
         } finally {
@@ -64,6 +66,9 @@ export const useGetData = () => {
             return data;
         } else {
             const updatedCardOrder = data.categories.map((currentCat) => {
+                if (currentCat.cards.length <= 0) {
+                    return currentCat;
+                }
                 //remove end of queue, add to beginning
                 const poppedIndex = currentCat.cards.pop();
                 currentCat.cards.unshift(poppedIndex);
