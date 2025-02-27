@@ -11,7 +11,7 @@ export default function CategoryStatic ({catInfo, cards}) {
             {cards.map((card) => {
                 const {cardDescription, cardTitle, createdAt} = card;
                 return (
-                    <CardStatic cardTitle={cardTitle} cardDescription={cardDescription} createdAt={createdAt}/>
+                    <CardStatic key={cardTitle} cardTitle={cardTitle} cardDescription={cardDescription} createdAt={createdAt}/>
                 )
             })}
         </div>

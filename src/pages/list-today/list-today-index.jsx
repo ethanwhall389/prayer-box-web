@@ -20,9 +20,7 @@ export default function ListToday({listToday, isLoading, setIsLoading, setMessag
                     <h1 className="text-2xl font-bold">Today's Prayer List</h1>
                     {listToday.map((cat) => {
                         return (
-                            <>
-                                <CategoryStatic catInfo={cat} cards={cat.cards}/>
-                            </>
+                            <CategoryStatic key={cat.categoryName} catInfo={cat} cards={cat.cards}/>
                         )
                     })}
                 </div>

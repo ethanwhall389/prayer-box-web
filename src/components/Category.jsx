@@ -80,7 +80,7 @@ export default function Category({category, boxData, setBoxData, setMessage, set
             }
             {category.cards.map((card) => {
                 return (
-                    <CardEdit key={card.name} cardInfo={card} categoryName={category.categoryName} boxData={boxData} setBoxData={setBoxData} setMessage={setMessage} setMessageType={setMessageType}/>
+                    <CardEdit key={card.cardTitle} cardInfo={card} categoryName={category.categoryName} boxData={boxData} setBoxData={setBoxData} setMessage={setMessage} setMessageType={setMessageType}/>
                 )
             })}
             <AddCardField categoryName={category.categoryName} boxData={boxData} setBoxData={setBoxData} setMessage={setMessage} setMessageType={setMessageType}/>
