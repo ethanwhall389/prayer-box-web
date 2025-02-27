@@ -9,6 +9,7 @@ import Settings from './pages/settings/settings-index'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useGetData } from './hooks/useGetData'
+import { useCalcListToday } from './hooks/useCalcListToday'
 import Message from './components/Message'
 import { useGetUserInfo } from './hooks/useGetUserInfo'
 
@@ -16,8 +17,10 @@ import { useGetUserInfo } from './hooks/useGetUserInfo'
 function App() {
 
   const {getBoxData} = useGetData();
+  const {calcListToday} = useCalcListToday();
 
   const [boxData, setBoxData] = useState([]);
+  const [listToday, setListToday] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState('error');
@@ -25,6 +28,11 @@ function App() {
 
   const {isLoggedIn} = useGetUserInfo();
 
+  
+
+  useEffect(() => {
+    setListToday(calcListToday(boxData))
+  }, [boxData])
 
   useEffect(() => {
     if(isLoggedIn) {
@@ -42,7 +50,7 @@ function App() {
           <Route path="/onboarding" element={<Onboarding/>} />
           <Route path="/dashboard" element={<Dashboard boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
           <Route path="/list-entire" element={<ListEntire boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
-          <Route path="/list-today" element={<ListToday boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
+          <Route path="/list-today" element={<ListToday listToday={listToday} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
           <Route path="/settings" element={<Settings/>}/>
         </Routes>
       </Router>

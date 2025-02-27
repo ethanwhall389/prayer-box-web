@@ -1,4 +1,4 @@
-import Card from "./Card"
+import CardEdit from "./CardEdit"
 import AddCardField from "./AddCardField";
 import { useUpdateCategory } from "../hooks/useUpdateCategory";
 import useDeleteCategory from "../hooks/useDeleteCategory";
@@ -83,7 +83,7 @@ export default function Category({category, boxData, setBoxData, setMessage, set
             }
             {category.cards.map((card) => {
                 return (
-                    <Card key={card.name} cardInfo={card} categoryName={category.categoryName} boxData={boxData} setBoxData={setBoxData} setMessage={setMessage} setMessageType={setMessageType}/>
+                    <CardEdit key={card.name} cardInfo={card} categoryName={category.categoryName} boxData={boxData} setBoxData={setBoxData} setMessage={setMessage} setMessageType={setMessageType}/>
                 )
             })}
             <AddCardField categoryName={category.categoryName} boxData={boxData} setBoxData={setBoxData} setMessage={setMessage} setMessageType={setMessageType}/>

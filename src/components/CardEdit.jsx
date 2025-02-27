@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useUpdateCard } from '../hooks/useUpdateCard';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 
-export default function Card({cardInfo, categoryName, boxData, setBoxData, message, setMessage, setMessageType}) {
+export default function CardEdit({cardInfo, categoryName, boxData, setBoxData, message, setMessage, setMessageType}) {
 
     const {deleteCard} = useDeleteCard(boxData, setBoxData)
     const {formatDate} = useFormatDate();

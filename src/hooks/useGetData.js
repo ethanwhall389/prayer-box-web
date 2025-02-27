@@ -44,7 +44,8 @@ export const useGetData = () => {
         setIsLoading(true);
         try {
             const data = docSnap.data();
-            const updatedData = await calcListToday(data); // checks the db, updates listToday if necessary
+
+            const updatedData = await calcCardOrder(data); // checks the db, updates listToday if necessary
             setBoxData(updatedData); //set state
             updateDoc(boxDocRef, {...updatedData})//update db doc
         } catch (error) {
@@ -54,29 +55,23 @@ export const useGetData = () => {
         }
     }
 
-    const calcListToday = (data) => {
+    const calcCardOrder = (data) => {
 
-        const lastUpdated = data.listToday.lastUpdated;
+        const lastUpdated = data.lastUpdated;
         const dateToday = formatDate(new Date().toISOString());
 
         if (lastUpdated === dateToday) {
             return data;
         } else {
-            const cardsToday = data.categories.map((currentCat) => {
-                const catName = currentCat.categoryName;
-                const catDescription = currentCat.categoryDescription;
-
+            const updatedCardOrder = data.categories.map((currentCat) => {
                 //remove end of queue, add to beginning
                 const poppedIndex = currentCat.cards.pop();
                 currentCat.cards.unshift(poppedIndex);
-
-                return {categoryName: catName, categoryDescription: catDescription, cardName: poppedIndex.cardTitle, cardDescription: poppedIndex.cardDescription, createdAt: poppedIndex.createdAt}
+                return currentCat;
             })
-            console.log('cardsToday: ', cardsToday);
-            console.log('data after mapping: ', data.categories);
-            data.listToday.lastUpdated = dateToday;
-            data.listToday.cardsToday = cardsToday;
-            return data;
+            console.log('data after mapping: ', updatedCardOrder);
+            data.lastUpdated = dateToday;
+            return {...data, categories: updatedCardOrder}
         }
     }
 
