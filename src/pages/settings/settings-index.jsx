@@ -9,11 +9,23 @@ import { deleteDoc } from "firebase/firestore"
 import { db } from "../../config/firebase-config"
 import { useGetUserInfo } from "../../hooks/useGetUserInfo"
 import { doc } from "firebase/firestore"
+import { useEffect } from "react"
 
-export default function Settings() {
+export default function Settings({isAuth}) {
 
-    const {userID} = useGetUserInfo();
     const navigate = useNavigate();
+    
+    useEffect(() => {
+        if (!isAuth) {
+            navigate('/');
+        }
+    }, [isAuth, navigate])
+
+    if (!isAuth) {
+        return null;
+    }
+    
+    const {userID} = useGetUserInfo();
     const user = auth.currentUser;
     const boxDocRef = doc(db, "boxes", userID);
 

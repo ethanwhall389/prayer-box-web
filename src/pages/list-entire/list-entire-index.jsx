@@ -5,11 +5,26 @@ import { useAddCard } from "../../hooks/useAddCard";
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import Header from "../../components/Header";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function ListEntire({boxData, setBoxData, isLoading, setIsLoading, setMessage, setMessageType}) {
+export default function ListEntire({isAuth, boxData, setBoxData, isLoading, setIsLoading, setMessage, setMessageType}) {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!isAuth) {
+            navigate('/');
+        }
+    }, [isAuth, navigate])
+
+    if (!isAuth) {
+        return null;
+    }
 
     const {addCategory} = useAddCategory(boxData, setBoxData);
     const {addCard} = useAddCard(boxData, setBoxData);
+
 
     // const [modalOpen, setModalOpen] = useState(false);
     // const [modalInfo, setModalInfo] = useState([]);

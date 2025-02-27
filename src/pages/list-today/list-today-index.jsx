@@ -4,10 +4,21 @@ import LinearProgress from '@mui/material/LinearProgress';
 import CategoryStatic from "../../components/CategoryStatic";
 import { ButtonSecondary } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-export default function ListToday({listToday, isLoading, setIsLoading, setMessage, setMessageType}) {
+export default function ListToday({isAuth, listToday, isLoading, setIsLoading, setMessage, setMessageType}) {
     
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!isAuth) {
+            navigate('/');
+        }
+    }, [isAuth, navigate])
+
+    if (!isAuth) {
+        return null;
+    }
 
     return (
         <div className="h-full flex flex-col items-center">

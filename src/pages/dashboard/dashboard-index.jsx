@@ -9,15 +9,28 @@ import Box from '@mui/material/Box';
 
 
 
-export default function Dashboard({boxData, setBoxData, isLoading, setIsLoading}) {
-
+export default function Dashboard({isAuth, boxData, setBoxData, isLoading, setIsLoading}) {
+    
     const navigate = useNavigate();
     const {checkIsNewUser} = useCheckIsNewUser();
 
+    // if (isAuth === false) {
+    //     navigate('/');
+    // }
+
+    useEffect(() => {
+        if (!isAuth) {
+            navigate('/');
+        }
+    }, [isAuth, navigate])
+
+    if (!isAuth) {
+        return null;
+    }
+
     useEffect(() => {
         checkIsNewUser();
-    }, [])
-    
+    }, [checkIsNewUser])
 
     return (
         <div className="h-screen flex flex-col items-center">

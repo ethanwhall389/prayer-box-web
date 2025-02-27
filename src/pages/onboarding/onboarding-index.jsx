@@ -4,16 +4,27 @@ import { db } from "../../config/firebase-config";
 import { useGetUserInfo } from "../../hooks/useGetUserInfo";
 import { useAddBox } from "../../hooks/useAddBox";
 import { useGetData } from "../../hooks/useGetData";
+import { useEffect } from "react";
 
 import { ButtonPrimary } from "../../components/Button";
 import { ButtonSecondary } from "../../components/Button";
 
-export default function Onboarding({setBoxData, setIsLoading}) {
+export default function Onboarding({isAuth, setBoxData, setIsLoading}) {
     
     const navigate = useNavigate();
     const {userID, firstName} = useGetUserInfo();
     const { addPremadeBox, addEmptyBox } = useAddBox();
     const {getBoxData} = useGetData();
+
+    useEffect(() => {
+        if (!isAuth) {
+            navigate('/');
+        }
+    }, [isAuth, navigate])
+
+    if (!isAuth) {
+        return null;
+    }
 
     async function completeOnboarding() {
         const boxDocRef = doc(db, "boxes", userID);

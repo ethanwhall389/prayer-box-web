@@ -12,6 +12,8 @@ import { useGetData } from './hooks/useGetData'
 import { useCalcListToday } from './hooks/useCalcListToday'
 import Message from './components/Message'
 import { useGetUserInfo } from './hooks/useGetUserInfo'
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from './config/firebase-config'
 
 
 function App() {
@@ -28,7 +30,11 @@ function App() {
 
   const {isLoggedIn} = useGetUserInfo();
 
-  
+  useEffect(() => {
+    onAuthStateChanged(auth, () => {
+      setIsAuth(true);
+    })
+  })
 
   useEffect(() => {
     setListToday(calcListToday(boxData))
@@ -47,11 +53,11 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" exact element={<Auth setBoxData={setBoxData} setIsLoading={setIsLoading} setIsAuth={setIsAuth}/>}/>
-          <Route path="/onboarding" element={<Onboarding setBoxData={setBoxData} setIsLoading={setIsLoading}/>} />
-          <Route path="/dashboard" element={<Dashboard boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
-          <Route path="/list-entire" element={<ListEntire boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
-          <Route path="/list-today" element={<ListToday listToday={listToday} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
-          <Route path="/settings" element={<Settings/>}/>
+          <Route path="/onboarding" element={<Onboarding isAuth={isAuth} setBoxData={setBoxData} setIsLoading={setIsLoading}/>} />
+          <Route path="/dashboard" element={<Dashboard isAuth={isAuth} boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
+          <Route path="/list-entire" element={<ListEntire isAuth={isAuth} boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
+          <Route path="/list-today" element={<ListToday isAuth={isAuth} listToday={listToday} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
+          <Route path="/settings" element={<Settings isAuth={isAuth}/>}/>
         </Routes>
       </Router>
     </div>
