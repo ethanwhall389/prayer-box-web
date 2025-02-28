@@ -14,7 +14,7 @@ export const useAddBox = () => {
         await setDoc(doc(boxCollectionRef, userID), {
             onboardingComplete: false,
             userID,
-            totalCategories: 2,
+            totalCategories: 5,
             totalCards: 0,
             createdAt: serverTimestamp(),
             categories: [
