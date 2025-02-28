@@ -14,10 +14,6 @@ export default function Dashboard({isAuth, boxData, setBoxData, isLoading, setIs
     const navigate = useNavigate();
     const {checkIsNewUser} = useCheckIsNewUser();
 
-    // if (isAuth === false) {
-    //     navigate('/');
-    // }
-
     useEffect(() => {
         if (!isAuth) {
             navigate('/');
