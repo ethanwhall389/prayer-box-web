@@ -22,7 +22,7 @@ export const ButtonCard = ({text, onClick}) => {
     return (
         <div className="h-28 w-full p-2 px-4 bg-green-300 rounded-xl hover:cursor-pointer text-left flex items-center justify-between hover:bg-green-400 transition-all" 
         onClick={onClick}>
-            <p className="text-lg font-medium">{text}</p>
+            <p className="text-lg font-bold">{text}</p>
             <ArrowForwardIcon />
         </div>
     )

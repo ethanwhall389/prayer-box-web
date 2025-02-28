@@ -26,8 +26,11 @@ export default function Auth({setBoxData, setIsLoading, setIsAuth}) {
     }
     
     return (
-        <div className="flex flex-col justify-center items-center h-screen gap-7">
-            <h1 className="text-2xl">Create an account or sign in</h1>
+        <div className="flex flex-col justify-center items-center h-screen gap-10">
+            <div className='flex flex-col gap-2'>
+                <h1 className="text-2xl font-bold">Welcome to Prayer Box!</h1>
+                <h1 className="text-xl">Create an account or sign in</h1>
+            </div>
             <div className="flex flex-col gap-2 w-48">
                 <ButtonPrimary text={'Sign in with Google'} onClick={signInGoogle} />
             </div>
