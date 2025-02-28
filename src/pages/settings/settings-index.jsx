@@ -62,7 +62,7 @@ export default function Settings({isAuth}) {
         <div className="h-full flex flex-col items-center">
             <Header />
             {modalOpen &&
-                <Modal setModalOpen={setModalOpen}>
+                <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
                     <div className="flex flex-col gap-4 items-center">
                         <p>You are about to delete your entire account. This cannot be undone.</p>
                         <ButtonDanger text={'Delete'} onClick={deleteCurrentUser}/>

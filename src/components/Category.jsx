@@ -50,7 +50,7 @@ export default function Category({category, boxData, setBoxData, setMessage, set
     return (
         <div className="bg-white p-4 w-full flex flex-col items-start gap-4 rounded-lg group/category">
             
-            {modalOpen && <Modal setModalOpen={setModalOpen}>
+            {modalOpen && <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
                 <div className="w-full flex flex-col gap-4 items-start text-left">
                     <p className="text-lg">Are you sure you want to delete {category.categoryName} and all of it's cards?</p>
                     <p>This action cannot be undone.</p>
