@@ -3,7 +3,7 @@ import { signInWithPopup } from "firebase/auth"
 import {ButtonPrimary, ButtonSecondary} from "../../components/Button";
 import { useNavigate} from "react-router-dom";
 
-export default function Auth({setBoxData, setIsLoading, setIsAuth}) {
+export default function Auth({setBoxData, setIsLoading}) {
 
     const navigate = useNavigate();
 

@@ -26,15 +26,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState('error');
-  const [isAuth, setIsAuth] = useState(false);
 
   const {isLoggedIn} = useGetUserInfo();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, () => {
-      setIsAuth(true);
-    })
-  })
 
   useEffect(() => {
     setListToday(calcListToday(boxData))
@@ -44,7 +37,7 @@ function App() {
     if(isLoggedIn) {
       getBoxData(setBoxData, setIsLoading)
     }
-  }, [isAuth])
+  }, [isLoggedIn])
 
   return (
     <>
@@ -52,12 +45,12 @@ function App() {
       {message && <Message messageText={message} messageType={messageType} timeout={1000} setMessage={setMessage}/>}
       <Router>
         <Routes>
-          <Route path="/" exact element={<Auth setBoxData={setBoxData} setIsLoading={setIsLoading} setIsAuth={setIsAuth}/>}/>
-          <Route path="/onboarding" element={<Onboarding isAuth={isAuth} setBoxData={setBoxData} setIsLoading={setIsLoading}/>} />
-          <Route path="/dashboard" element={<Dashboard isAuth={isAuth} boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
-          <Route path="/list-entire" element={<ListEntire isAuth={isAuth} boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
-          <Route path="/list-today" element={<ListToday isAuth={isAuth} listToday={listToday} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
-          <Route path="/settings" element={<Settings isAuth={isAuth}/>}/>
+          <Route path="/" exact element={<Auth setBoxData={setBoxData} setIsLoading={setIsLoading}/>}/>
+          <Route path="/onboarding" element={<Onboarding isAuth={isLoggedIn} setBoxData={setBoxData} setIsLoading={setIsLoading}/>} />
+          <Route path="/dashboard" element={<Dashboard isAuth={isLoggedIn} boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
+          <Route path="/list-entire" element={<ListEntire isAuth={isLoggedIn} boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
+          <Route path="/list-today" element={<ListToday isAuth={isLoggedIn} listToday={listToday} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
+          <Route path="/settings" element={<Settings isAuth={isLoggedIn}/>}/>
         </Routes>
       </Router>
     </div>
