@@ -27,7 +27,10 @@ export default function Auth({setBoxData, setIsLoading}) {
     
     return (
         <div className="flex flex-col justify-center items-center h-screen gap-10">
-            <div className='flex flex-col gap-2'>
+            <div className='flex flex-col gap-2 items-center'>
+                <div className="w-1/2 h-auto mb-4">
+                    <img src="/assets/prayer-box-logo-no-bg.svg" alt="" />
+                </div>
                 <h1 className="text-2xl font-bold">Welcome to Prayer Box!</h1>
                 <h1 className="text-xl">Create an account or sign in</h1>
             </div>

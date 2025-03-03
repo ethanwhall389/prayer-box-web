@@ -14,7 +14,12 @@ export default function Header() {
 
     return (
         <div className='bg-white flex justify-between w-full p-8'>
-            <h1 onClick={() => navigate('/dashboard')} className='text-xl font-bold hover:cursor-pointer'>{firstName}'s Prayer Box</h1>
+            <div onClick={() => navigate('/dashboard')} className="hover:cursor-pointer flex justify-start grow items-center gap-4">
+                <div className="w-1/12 h-auto mb-4">
+                    <img src="/assets/prayer-box-logo-no-bg.svg" alt="" />
+                </div>
+                <h1 className='text-xl font-bold'>{firstName}'s Prayer Box</h1>
+            </div>
             <div className="flex justify-center items-center gap-2">
                 <p>{formatDate(new Date())}</p>
                 <ButtonIcon icon={<SettingsIcon style={{fontSize: '35px'}}/>} rotate={true} onClick={() => navigate('/settings')} />
