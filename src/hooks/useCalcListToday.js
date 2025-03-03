@@ -21,5 +21,24 @@ export const useCalcListToday = () => {
 
     }
 
-    return {calcListToday}
+    const calcPrayerSession = (listToday) => {
+        console.log(listToday);
+        const sessionArray = listToday.map((cat) => {
+            cat.cards.forEach((card) => {
+                return {
+                    cardTitle: card.cardTitle,
+                    cardDescription: card.cardDescription,
+                    createdAt: card.createdAt,
+                    categoryName: cat.categoryName,
+                    categoryDescription: cat.categoryDescription,
+                }
+            })
+        })
+
+        console.log(sessionArray);
+
+        return sessionArray;
+    }
+
+    return {calcListToday, calcPrayerSession}
 }
