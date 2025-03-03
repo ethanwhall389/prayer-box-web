@@ -5,6 +5,7 @@ import Dashboard from './pages/dashboard/dashboard-index'
 import Onboarding from './pages/onboarding/onboarding-index'
 import ListEntire from './pages/list-entire/list-entire-index'
 import ListToday from './pages/list-today/list-today-index'
+import PrayerSession from './pages/list-entire/prayer-session-index'
 import Settings from './pages/settings/settings-index'
 import { useState } from 'react'
 import { useEffect } from 'react'
@@ -50,6 +51,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard isAuth={isLoggedIn} boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
           <Route path="/list-entire" element={<ListEntire isAuth={isLoggedIn} boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
           <Route path="/list-today" element={<ListToday isAuth={isLoggedIn} listToday={listToday} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
+          <Route path="/prayer-session" element={<PrayerSession isAuth={isLoggedIn} listToday={listToday} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />
           <Route path="/settings" element={<Settings isAuth={isLoggedIn}/>}/>
         </Routes>
       </Router>
