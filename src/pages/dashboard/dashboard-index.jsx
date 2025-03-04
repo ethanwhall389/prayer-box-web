@@ -6,6 +6,8 @@ import { useCheckIsNewUser } from '../../hooks/useCheckIsNewUser';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import AnimatedPage from "../../components/AnimatedPage";
+import { useGetUserInfo } from "../../hooks/useGetUserInfo";
+import { useGetData } from "../../hooks/useGetData";
 
 
 
@@ -13,14 +15,15 @@ export default function Dashboard({isAuth, boxData, setBoxData, isLoading, setIs
     
     const navigate = useNavigate();
     const {checkIsNewUser} = useCheckIsNewUser();
+    const {isLoggedIn} = useGetUserInfo();
 
     useEffect(() => {
-        if (!isAuth) {
+        if (!isLoggedIn) {
             navigate('/');
         }
     }, [isAuth, navigate])
 
-    if (!isAuth) {
+    if (!isLoggedIn) {
         return null;
     }
 

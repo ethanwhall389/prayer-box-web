@@ -17,7 +17,7 @@ export default function AnimatedRoutes({isLoggedIn, boxData, setBoxData, listTod
     return (
         <AnimatePresence mode='wait'>
         <Routes location={location} key={location.pathname}>
-          <Route path="/" exact element={<Auth setBoxData={setBoxData} setIsLoading={setIsLoading}/>}/>
+          <Route path="/" exact element={<Auth isLoggedIn={isLoggedIn} setBoxData={setBoxData} setIsLoading={setIsLoading}/>}/>
           <Route path="/onboarding" element={<Onboarding isAuth={isLoggedIn} setBoxData={setBoxData} setIsLoading={setIsLoading}/>} />
           <Route path="/dashboard" element={<Dashboard isAuth={isLoggedIn} boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading}/>} />
           <Route path="/list-entire" element={<ListEntire isAuth={isLoggedIn} boxData={boxData} setBoxData={setBoxData} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType}/>} />

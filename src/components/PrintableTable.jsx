@@ -1,7 +1,5 @@
 export default function PrintableTable({data}) {
     
-    console.log(data);
-    
     return (
         <table border={'1'} cellPadding={'50'} cellSpacing={'0'} className="bg-white w-full">
             <thead className="bg-slate-200 w-full border-1">

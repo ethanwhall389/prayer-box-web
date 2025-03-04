@@ -1,13 +1,23 @@
 import { auth, providerGoogle, providerEmail } from "../../config/firebase-config"
 import { signInWithPopup } from "firebase/auth"
 import {ButtonPrimary, ButtonSecondary} from "../../components/Button";
-import { useNavigate} from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import AnimatedPage from "../../components/AnimatedPage";
+import { useEffect } from "react";
+import { useGetUserInfo } from "../../hooks/useGetUserInfo";
+import { useGetData } from "../../hooks/useGetData";
 
 export default function Auth({setBoxData, setIsLoading}) {
 
     const navigate = useNavigate();
+    const {getBoxData} = useGetData();
+    const {isLoggedIn} = useGetUserInfo();
 
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate('/dashboard');
+        }
+    }, [isLoggedIn])
     
     async function signInGoogle () {
         const results = await signInWithPopup(auth, providerGoogle);
@@ -18,6 +28,7 @@ export default function Auth({setBoxData, setIsLoading}) {
             isLoggedIn: true,
         }
         localStorage.setItem('auth', JSON.stringify(authInfo));
+        getBoxData(setBoxData, setIsLoading);
         navigate('/dashboard');
     }
 

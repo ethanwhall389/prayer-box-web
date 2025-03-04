@@ -19,21 +19,22 @@ import AnimatedPage from "../../components/AnimatedPage"
 export default function Settings({isAuth}) {
 
     const navigate = useNavigate();
+    const {isLoggedIn, userID, displayName} = useGetUserInfo();
+    const user = auth.currentUser;
+    const [modalOpen, setModalOpen] = useState(false);
     
     useEffect(() => {
-        if (!isAuth) {
+        if (!isLoggedIn) {
             navigate('/');
         }
     }, [isAuth, navigate])
 
-    if (!isAuth) {
+    if (!isLoggedIn) {
         return null;
     }
-    
-    const {userID, displayName} = useGetUserInfo();
-    const user = auth.currentUser;
+
     const boxDocRef = doc(db, "boxes", userID);
-    const [modalOpen, setModalOpen] = useState(false);
+    
 
     async function deleteCurrentUser() {
         try {
@@ -55,7 +56,7 @@ export default function Settings({isAuth}) {
             navigate('/');
             localStorage.clear();
         } catch (error) {
-            console.error(error);
+            console.error('Caught an error: ', error);
         }
     }
 
