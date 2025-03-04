@@ -14,6 +14,7 @@ export default function ListToday({isAuth, listToday, isLoading, setIsLoading, s
     const navigate = useNavigate();
     const contentRef = useRef();
     const print = useReactToPrint({contentRef});
+    console.log('listToday from ListToday: ', listToday);
 
     useEffect(() => {
         if (!isAuth) {
@@ -39,7 +40,10 @@ export default function ListToday({isAuth, listToday, isLoading, setIsLoading, s
                 <div className="w-full h-full py-20 px-10 max-w-[850px] flex flex-col gap-5 justify-start items-start">
                     <h1 className="text-2xl font-bold">Today's Prayer List</h1>
                     <div className="w-full flex justify-between">
-                        <ButtonSecondary text={'Edit your box'} onClick={() => navigate('/list-entire')}/>
+                        <div className="flex flex-col items-start gap-3">
+                            <ButtonPrimary text={'Begin a prayer session'} onClick={() => navigate('/prayer-session')}/>
+                            <ButtonSecondary text={'Edit your box'} onClick={() => navigate('/list-entire')}/>
+                        </div>
                         <div title="Print today's list">
                             <ButtonIcon icon={<PrintIcon/>} onClick={() => print()}/>
                         </div>

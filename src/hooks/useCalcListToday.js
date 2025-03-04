@@ -22,9 +22,10 @@ export const useCalcListToday = () => {
     }
 
     const calcPrayerSession = (listToday) => {
-        console.log(listToday);
-        const sessionArray = listToday.map((cat) => {
-            cat.cards.forEach((card) => {
+
+        const sessionArray = listToday.flatMap((cat) => {
+
+            const cards = cat.cards.map((card) => {
                 return {
                     cardTitle: card.cardTitle,
                     cardDescription: card.cardDescription,
@@ -33,9 +34,9 @@ export const useCalcListToday = () => {
                     categoryDescription: cat.categoryDescription,
                 }
             })
-        })
+            return cards;
 
-        console.log(sessionArray);
+        })
 
         return sessionArray;
     }
