@@ -6,23 +6,25 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Carousel from "../../components/Carousel";
 import { ButtonPrimary, ButtonSecondary } from "../../components/Button";
 import AnimatedPage from "../../components/AnimatedPage";
+import { useGetUserInfo } from "../../hooks/useGetUserInfo";
 
 export default function PrayerSession({isAuth, listToday, isLoading, setIsLoading, setMessage, setMessageType}) {
     const navigate = useNavigate();
     const {calcPrayerSession} = useCalcListToday();
     const [sessionData, setSessionData] = useState([]);
     const [activeCardIndex, setActiveCardIndex] = useState(0);
+    const {isLoggedIn} = useGetUserInfo();
     
     const [currentCat, setCurrentCat] = useState('')
     const [catDescription, setCatDescription] = useState('')
 
     useEffect(() => {
-        if (!isAuth) {
+        if (!isLoggedIn) {
             navigate('/');
         }
     }, [isAuth, navigate])
 
-    if (!isAuth) {
+    if (!isLoggedIn) {
         return null;
     }
     

@@ -7,18 +7,20 @@ import Header from "../../components/Header";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AnimatedPage from "../../components/AnimatedPage";
+import { useGetUserInfo } from "../../hooks/useGetUserInfo";
 
 export default function ListEntire({isAuth, boxData, setBoxData, isLoading, setIsLoading, setMessage, setMessageType}) {
 
     const navigate = useNavigate();
+    const {isLoggedIn} = useGetUserInfo();
 
     useEffect(() => {
-        if (!isAuth) {
+        if (!isLoggedIn) {
             navigate('/');
         }
     }, [isAuth, navigate])
 
-    if (!isAuth) {
+    if (!isLoggedIn) {
         return null;
     }
 

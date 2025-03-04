@@ -16,7 +16,7 @@ import BrushIcon from '@mui/icons-material/Brush';
 import InboxIcon from '@mui/icons-material/Inbox';
 import AnimatedPage from "../../components/AnimatedPage"
 
-export default function Settings({isAuth}) {
+export default function Settings() {
 
     const navigate = useNavigate();
     const {isLoggedIn, userID, displayName} = useGetUserInfo();
@@ -27,7 +27,7 @@ export default function Settings({isAuth}) {
         if (!isLoggedIn) {
             navigate('/');
         }
-    }, [isAuth, navigate])
+    }, [navigate])
 
     if (!isLoggedIn) {
         return null;

@@ -13,17 +13,17 @@ import AnimatedPage from "../../components/AnimatedPage";
 export default function Onboarding({isAuth, setBoxData, setIsLoading}) {
     
     const navigate = useNavigate();
-    const {userID, firstName} = useGetUserInfo();
+    const {isLoggedIn, userID, firstName} = useGetUserInfo();
     const { addPremadeBox, addEmptyBox } = useAddBox();
     const {getBoxData} = useGetData();
 
     useEffect(() => {
-        if (!isAuth) {
+        if (!isLoggedIn) {
             navigate('/');
         }
     }, [isAuth, navigate])
 
-    if (!isAuth) {
+    if (!isLoggedIn) {
         return null;
     }
 

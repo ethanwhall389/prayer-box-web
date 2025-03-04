@@ -9,20 +9,22 @@ import PrintableTable from "../../components/PrintableTable";
 import { useReactToPrint } from "react-to-print";
 import PrintIcon from '@mui/icons-material/Print';
 import AnimatedPage from "../../components/AnimatedPage";
+import { useGetUserInfo } from "../../hooks/useGetUserInfo";
 
 export default function ListToday({isAuth, listToday, isLoading, setIsLoading, setMessage, setMessageType}) {
     
     const navigate = useNavigate();
     const contentRef = useRef();
     const print = useReactToPrint({contentRef});
+    const {isLoggedIn} = useGetUserInfo();
 
     useEffect(() => {
-        if (!isAuth) {
+        if (!isLoggedIn) {
             navigate('/');
         }
     }, [isAuth, navigate])
 
-    if (!isAuth) {
+    if (!isLoggedIn) {
         return null;
     }
 

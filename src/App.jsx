@@ -38,7 +38,7 @@ function App() {
     <div className='min-h-screen h-full w-full bg-slate-100'>
       {message && <Message messageText={message} messageType={messageType} timeout={1000} setMessage={setMessage}/>}
       <Router>
-        <AnimatedRoutes isLoggedIn={isLoggedIn} boxData={boxData} setBoxData={setBoxData} listToday={listToday} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType} />
+        <AnimatedRoutes boxData={boxData} setBoxData={setBoxData} listToday={listToday} isLoading={isLoading} setIsLoading={setIsLoading} setMessage={setMessage} setMessageType={setMessageType} />
       </Router>
     </div>
     </>
