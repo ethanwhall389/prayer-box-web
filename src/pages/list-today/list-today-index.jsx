@@ -8,6 +8,7 @@ import { useEffect, useRef } from "react";
 import PrintableTable from "../../components/PrintableTable";
 import { useReactToPrint } from "react-to-print";
 import PrintIcon from '@mui/icons-material/Print';
+import AnimatedPage from "../../components/AnimatedPage";
 
 export default function ListToday({isAuth, listToday, isLoading, setIsLoading, setMessage, setMessageType}) {
     
@@ -29,6 +30,7 @@ export default function ListToday({isAuth, listToday, isLoading, setIsLoading, s
     return (
         <div className="h-full flex flex-col items-center">
             <Header />
+            <AnimatedPage>
             {isLoading &&
                 <div className="w-full h-screen max-w-[850px] flex justify-center items-center">
                     <Box sx={{ width: '100%' }}>
@@ -58,6 +60,7 @@ export default function ListToday({isAuth, listToday, isLoading, setIsLoading, s
                     </div>
                 </div>
             }
+            </AnimatedPage>
         </div>
     )
 }

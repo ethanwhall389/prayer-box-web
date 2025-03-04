@@ -2,6 +2,7 @@ import { auth, providerGoogle, providerEmail } from "../../config/firebase-confi
 import { signInWithPopup } from "firebase/auth"
 import {ButtonPrimary, ButtonSecondary} from "../../components/Button";
 import { useNavigate} from "react-router-dom";
+import AnimatedPage from "../../components/AnimatedPage";
 
 export default function Auth({setBoxData, setIsLoading}) {
 
@@ -26,6 +27,7 @@ export default function Auth({setBoxData, setIsLoading}) {
     }
     
     return (
+        <AnimatedPage>
         <div className="flex flex-col justify-center items-center h-screen gap-10">
             <div className='flex flex-col gap-2 items-center'>
                 <div className="w-1/2 h-auto mb-4">
@@ -38,5 +40,6 @@ export default function Auth({setBoxData, setIsLoading}) {
                 <ButtonPrimary text={'Sign in with Google'} onClick={signInGoogle} />
             </div>
         </div>
+        </AnimatedPage>
     )
 }

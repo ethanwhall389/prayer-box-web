@@ -6,6 +6,7 @@ import { useCheckIsNewUser } from '../../hooks/useCheckIsNewUser';
 import { useGetData } from "../../hooks/useGetData";
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
+import AnimatedPage from "../../components/AnimatedPage";
 
 
 
@@ -31,6 +32,7 @@ export default function Dashboard({isAuth, boxData, setBoxData, isLoading, setIs
     return (
         <div className="h-screen flex flex-col items-center">
             <Header />
+        <AnimatedPage>
         <div className="w-full h-full px-10 max-w-[850px] flex flex-col gap-5 justify-center items-start">
             {isLoading && 
                 <Box sx={{ width: '100%' }}>
@@ -45,6 +47,7 @@ export default function Dashboard({isAuth, boxData, setBoxData, isLoading, setIs
                 </>
             }
         </div>
+        </AnimatedPage>
         </div>
     )
 }

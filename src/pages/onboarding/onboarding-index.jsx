@@ -8,6 +8,7 @@ import { useEffect } from "react";
 
 import { ButtonPrimary } from "../../components/Button";
 import { ButtonSecondary } from "../../components/Button";
+import AnimatedPage from "../../components/AnimatedPage";
 
 export default function Onboarding({isAuth, setBoxData, setIsLoading}) {
     
@@ -46,6 +47,7 @@ export default function Onboarding({isAuth, setBoxData, setIsLoading}) {
     }
     
     return (
+        <AnimatedPage>
         <div className="h-screen flex flex-col justify-center items-center text-left">
             <div className="max-w-2/3 flex flex-col gap-10">
                 <div className="flex flex-col gap-2">
@@ -59,5 +61,6 @@ export default function Onboarding({isAuth, setBoxData, setIsLoading}) {
                 </div>
             </div>
         </div>
+        </AnimatedPage>
     )
 }

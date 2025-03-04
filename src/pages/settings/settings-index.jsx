@@ -14,6 +14,7 @@ import Modal from "../../components/Modal"
 import PersonIcon from '@mui/icons-material/Person';
 import BrushIcon from '@mui/icons-material/Brush';
 import InboxIcon from '@mui/icons-material/Inbox';
+import AnimatedPage from "../../components/AnimatedPage"
 
 export default function Settings({isAuth}) {
 
@@ -61,6 +62,7 @@ export default function Settings({isAuth}) {
     return (
         <div className="h-full flex flex-col items-center">
             <Header />
+            <AnimatedPage>
             {modalOpen &&
                 <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
                     <div className="flex flex-col gap-4 items-center">
@@ -106,6 +108,7 @@ export default function Settings({isAuth}) {
                     </div>
                 </div>
             </div>
+            </AnimatedPage>
         </div>
     )
 }

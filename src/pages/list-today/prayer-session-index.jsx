@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import Carousel from "../../components/Carousel";
 import { ButtonPrimary, ButtonSecondary } from "../../components/Button";
+import AnimatedPage from "../../components/AnimatedPage";
 
 export default function PrayerSession({isAuth, listToday, isLoading, setIsLoading, setMessage, setMessageType}) {
     const navigate = useNavigate();
@@ -45,6 +46,7 @@ export default function PrayerSession({isAuth, listToday, isLoading, setIsLoadin
      }, [activeCardIndex])
     
     return (
+        <AnimatedPage>
         <div className="h-full min-h-screen flex flex-col items-center justify-center">
             {isLoading &&
                 <div className="w-full h-screen max-w-[850px] flex justify-center items-center">
@@ -81,5 +83,6 @@ export default function PrayerSession({isAuth, listToday, isLoading, setIsLoadin
             }
             
         </div>
+        </AnimatedPage>
     )
 }

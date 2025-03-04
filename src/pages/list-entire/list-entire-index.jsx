@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Header from "../../components/Header";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import AnimatedPage from "../../components/AnimatedPage";
 
 export default function ListEntire({isAuth, boxData, setBoxData, isLoading, setIsLoading, setMessage, setMessageType}) {
 
@@ -33,6 +34,7 @@ export default function ListEntire({isAuth, boxData, setBoxData, isLoading, setI
     return (
         <div className="h-full flex flex-col items-center">
             <Header />
+            <AnimatedPage>
             {isLoading &&
                 <div className="w-full h-screen max-w-[850px] flex justify-center items-center">
                     <Box sx={{ width: '100%' }}>
@@ -61,7 +63,7 @@ export default function ListEntire({isAuth, boxData, setBoxData, isLoading, setI
                 </div>
                 </>
             }
-                
+            </AnimatedPage>    
         </div>
     )
 }
