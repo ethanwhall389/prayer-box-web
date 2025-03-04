@@ -22,7 +22,9 @@ export default function Header() {
             </div>
             <div className="flex justify-center items-center gap-2">
                 <p>{formatDate(new Date())}</p>
+                <div className="text-black hover:text-green-400 duration-100">
                 <ButtonIcon icon={<SettingsIcon style={{fontSize: '35px'}}/>} rotate={true} onClick={() => navigate('/settings')} />
+                </div>
             </div>
         </div>
     )

@@ -39,7 +39,6 @@ export default function Dashboard({isAuth, boxData, setBoxData, isLoading, setIs
             }
             {!isLoading &&
                 <>
-                    <p>Verse pertaining to prayer...</p>
                     <p>{boxData.totalCards} prayer cards in your box.</p>
                     <ButtonCard text={"View today's prayer list"} onClick={() => navigate('/list-today')}/>
                     <ButtonCard text={"View and edit your prayer box"} onClick={() => navigate('/list-entire')}/>
