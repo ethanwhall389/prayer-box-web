@@ -1,3 +1,6 @@
+import React from "react"
+import { Fragment } from "react"
+
 export default function PrintableTable({data}) {
     
     return (
@@ -15,14 +18,15 @@ export default function PrintableTable({data}) {
             <tbody>
                 {data.map((cat) => {
                     return (
-                        <tr key={cat.categoryName} className="border-top border-1">
+                        <tr key={cat.categoryName} className="border-1">
                             <th className="bg-slate-200 border-1 p-1 py-4 text-left">{cat.categoryName}</th>
                             {cat.cards.map((card) => {
                                 return (
-                                    <>
-                                    <td key={card.cardTitle} className="border-1 p-1 text-left">{card.cardTitle}</td>
-                                    <td key={card.cardDescrption} className="border-1 p-1 text-left">{card.cardDescription}</td>
-                                    </>
+                                    <React.Fragment key={card.cardTitle}>
+
+                                    <td className="border-1 p-1 text-left">{card.cardTitle}</td>
+                                    <td className="border-1 p-1 text-left">{card.cardDescription}</td>
+                                    </React.Fragment>
                                 )
                             })}
                         </tr>
