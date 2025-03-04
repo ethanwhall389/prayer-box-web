@@ -15,7 +15,6 @@ export default function ListToday({isAuth, listToday, isLoading, setIsLoading, s
     const navigate = useNavigate();
     const contentRef = useRef();
     const print = useReactToPrint({contentRef});
-    console.log('listToday from ListToday: ', listToday);
 
     useEffect(() => {
         if (!isAuth) {

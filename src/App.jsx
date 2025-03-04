@@ -7,8 +7,6 @@ import { useGetData } from './hooks/useGetData'
 import { useCalcListToday } from './hooks/useCalcListToday'
 import Message from './components/Message'
 import { useGetUserInfo } from './hooks/useGetUserInfo'
-import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from './config/firebase-config'
 import AnimatedRoutes from './AnimatedRoutes'
 
 
@@ -46,7 +44,5 @@ function App() {
     </>
   )
 }
-
-//isLoggedIn, boxData, setBoxData, isLoading, setIsLoading, setMessage, setMessageType
 
 export default App

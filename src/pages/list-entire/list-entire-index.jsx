@@ -1,7 +1,6 @@
 import { ButtonPrimary } from "../../components/Button"
 import Category from "../../components/Category";
 import { useAddCategory } from "../../hooks/useAddCategory"
-import { useAddCard } from "../../hooks/useAddCard";
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import Header from "../../components/Header";
@@ -24,11 +23,6 @@ export default function ListEntire({isAuth, boxData, setBoxData, isLoading, setI
     }
 
     const {addCategory} = useAddCategory(boxData, setBoxData);
-    const {addCard} = useAddCard(boxData, setBoxData);
-
-
-    // const [modalOpen, setModalOpen] = useState(false);
-    // const [modalInfo, setModalInfo] = useState([]);
 
 
     return (

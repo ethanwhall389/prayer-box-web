@@ -18,7 +18,6 @@ export default function Auth({setBoxData, setIsLoading}) {
             isLoggedIn: true,
         }
         localStorage.setItem('auth', JSON.stringify(authInfo));
-        //setIsAuth(true);
         navigate('/dashboard');
     }
 

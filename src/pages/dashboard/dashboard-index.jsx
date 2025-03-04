@@ -3,7 +3,6 @@ import Header from '../../components/Header';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useCheckIsNewUser } from '../../hooks/useCheckIsNewUser';
-import { useGetData } from "../../hooks/useGetData";
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import AnimatedPage from "../../components/AnimatedPage";

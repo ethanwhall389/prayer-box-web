@@ -83,7 +83,7 @@ export default function Settings({isAuth}) {
                         <h2 className="text-xl">Prayer Box Preferences</h2>
                     </div>
                     <div className="w-full flex flex-col items-start gap-2">
-                        {/* Appearance options here */}
+                        {/* Preference options here */}
                     </div>
                 </div>
 
