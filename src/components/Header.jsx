@@ -18,11 +18,11 @@ export default function Header() {
                 <div className="w-1/12 h-auto mb-4">
                     <img src="/assets/prayer-box-logo-no-bg.svg" alt="" />
                 </div>
-                <h1 className='text-xl font-bold'>{firstName}'s Prayer Box</h1>
+                <h1 className='text-xl text-[#284563] font-bold'>{firstName}'s Prayer Box</h1>
             </div>
             <div className="flex justify-center items-center gap-2">
-                <p>{formatDate(new Date())}</p>
-                <div className="text-black hover:text-green-400 duration-100">
+                <p className="text-[#284563">{formatDate(new Date())}</p>
+                <div className="text-[#284563] hover:text-green-400 duration-100">
                 <ButtonIcon icon={<SettingsIcon style={{fontSize: '35px'}}/>} rotate={true} onClick={() => navigate('/settings')} />
                 </div>
             </div>
