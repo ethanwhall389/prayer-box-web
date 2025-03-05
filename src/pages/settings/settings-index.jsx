@@ -14,6 +14,7 @@ import Modal from "../../components/Modal"
 import PersonIcon from '@mui/icons-material/Person';
 import BrushIcon from '@mui/icons-material/Brush';
 import InboxIcon from '@mui/icons-material/Inbox';
+import InfoIcon from '@mui/icons-material/Info';
 import AnimatedPage from "../../components/AnimatedPage"
 
 export default function Settings() {
@@ -106,6 +107,17 @@ export default function Settings() {
                     <div className="w-full flex flex-col items-start gap-2">
                         <ButtonPrimary text={'Sign Out'} onClick={signUserOut}/>
                         <ButtonDanger text={'Delete My Account'} onClick={() => setModalOpen(true)}/>
+                    </div>
+                </div>
+                
+                <div className="w-full flex flex-col gap-10">
+                    <div className="w-full border-b-1 border-slate-500 py-8 flex justify-start items-center gap-4">
+                        <InfoIcon />
+                        <h2 className="text-xl">About Prayer Box</h2>
+                    </div>
+                    <div className="w-full flex flex-col items-start gap-2">
+                        <p>Prayer Box v. 1.0.0</p>
+                        <p>Built and maintained by <a href="https://github.com/ethanwhall389" target="_new">Ethan Hall</a></p>
                     </div>
                 </div>
             </div>
