@@ -32,14 +32,6 @@ export default function PrintableTable({data}) {
                         </tr>
                     )
                 })}
-                {/* <tr className="border-top border-1">
-                    <th className="bg-slate-200">Row one category</th>
-                    <td>Row one info</td>
-                </tr>
-                <tr className="border-top border-1">
-                    <th className="bg-slate-200">Row two category</th>
-                    <td>Row two info</td>
-                </tr> */}
             </tbody>
         </table>
     )
