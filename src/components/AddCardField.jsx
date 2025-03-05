@@ -21,12 +21,14 @@ export default function AddCardField({categoryName, boxData, setBoxData, message
     return (
         <div className="bg-slate-100 w-full p-4 flex flex-col items-start group hover:cursor-pointer hover:bg-slate-200 rounded-lg">
             <div className="flex w-full justify-start items-center gap-4">
-                <form action="" onSubmit={(e) => onSubmit(e)} className="flex gap-4 w-full">
+                <form action="" onSubmit={(e) => onSubmit(e)} className="flex flex-col sm:flex-row gap-4 w-full">
                     <label htmlFor="card-title" className="flex items-center justify-center hover:cursor-pointer">
                         <AddCircleOutlineIcon/>
                     </label>
-                    <input id="card-title" value={cardNameInput} onChange={(e) => {setCardNameInput(e.target.value)}} type="text" placeholder="Card Title" className="w-1/2 p-2 border-2 border-slate-300 outline-none" />
-                    <input id="card-description" value={cardDescriptionInput} onChange={(e) => {setCardDescriptionInput(e.target.value)}} type="text" placeholder="Card Description" className="w-1/2 p-2 border-2 border-slate-300 outline-none" />
+                    <div className='flex flex-col sm:flex-row w-full gap-3'>
+                        <input id="card-title" value={cardNameInput} onChange={(e) => {setCardNameInput(e.target.value)}} type="text" placeholder="Card Title" className="sm:w-1/2 p-2 border-2 border-slate-300 outline-none" />
+                        <input id="card-description" value={cardDescriptionInput} onChange={(e) => {setCardDescriptionInput(e.target.value)}} type="text" placeholder="Card Description" className="sm:w-1/2 p-2 border-2 border-slate-300 outline-none" />
+                    </div>
                     <button type="submit" className="hidden"></button>
                 </form>
             </div>
