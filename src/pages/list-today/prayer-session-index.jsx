@@ -7,6 +7,7 @@ import Carousel from "../../components/Carousel";
 import { ButtonPrimary, ButtonSecondary } from "../../components/Button";
 import AnimatedPage from "../../components/AnimatedPage";
 import { useGetUserInfo } from "../../hooks/useGetUserInfo";
+import BackArrow from "../../components/BackArrow";
 
 export default function PrayerSession({isAuth, listToday, isLoading, setIsLoading, setMessage, setMessageType}) {
     const navigate = useNavigate();
@@ -49,6 +50,9 @@ export default function PrayerSession({isAuth, listToday, isLoading, setIsLoadin
     
     return (
         <AnimatedPage>
+        <div className="absolute w-full top-0">
+            <BackArrow />
+        </div>
         <div className="h-full min-h-screen flex flex-col items-center justify-center">
             {isLoading &&
                 <div className="w-full h-screen max-w-[850px] flex justify-center items-center">
@@ -58,6 +62,7 @@ export default function PrayerSession({isAuth, listToday, isLoading, setIsLoadin
                 </div>
             }
             {!isLoading && 
+                <>
                 <div className="w-full h-full py-20 px-10 max-w-[850px] flex flex-col gap-14 justify-start items-start">
                     
                     {activeCardIndex !== sessionData.length &&
@@ -82,6 +87,7 @@ export default function PrayerSession({isAuth, listToday, isLoading, setIsLoadin
 
 
                 </div>
+                </>
             }
             
         </div>

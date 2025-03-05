@@ -10,6 +10,7 @@ import { useReactToPrint } from "react-to-print";
 import PrintIcon from '@mui/icons-material/Print';
 import AnimatedPage from "../../components/AnimatedPage";
 import { useGetUserInfo } from "../../hooks/useGetUserInfo";
+import BackArrow from "../../components/BackArrow";
 
 export default function ListToday({isAuth, listToday, isLoading, setIsLoading, setMessage, setMessageType}) {
     
@@ -40,24 +41,27 @@ export default function ListToday({isAuth, listToday, isLoading, setIsLoading, s
                 </div>
             }
             {!isLoading &&
-                <div className="w-full h-full py-20 px-10 max-w-[850px] flex flex-col gap-5 justify-start items-start">
-                    <h1 className="text-2xl font-bold">Today's Prayer List</h1>
-                    <div className="w-full flex justify-between">
-                        <div className="flex flex-col items-start gap-3">
-                            <ButtonPrimary text={'Begin a prayer session'} onClick={() => navigate('/prayer-session')}/>
-                            <ButtonSecondary text={'Edit your box'} onClick={() => navigate('/list-entire')}/>
+                <div className="flex flex-col w-full items-center">
+                    <BackArrow />    
+                    <div className="w-full h-full py-12 px-10 max-w-[850px] flex flex-col gap-5 justify-start items-start">
+                        <h1 className="text-2xl font-bold">Today's Prayer List</h1>
+                        <div className="w-full flex justify-between">
+                            <div className="flex flex-col items-start gap-3">
+                                <ButtonPrimary text={'Begin a prayer session'} onClick={() => navigate('/prayer-session')}/>
+                                <ButtonSecondary text={'Edit your box'} onClick={() => navigate('/list-entire')}/>
+                            </div>
+                            <div title="Print today's list">
+                                <ButtonIcon icon={<PrintIcon/>} onClick={() => print()}/>
+                            </div>
                         </div>
-                        <div title="Print today's list">
-                            <ButtonIcon icon={<PrintIcon/>} onClick={() => print()}/>
+                        {listToday.length > 0 && listToday.map((cat) => {
+                            return (
+                                <CategoryStatic key={cat.categoryName} catInfo={cat} cards={cat.cards}/>
+                            )
+                        })}
+                        <div ref={contentRef} className="m-10 hidden print:block">
+                            <PrintableTable data={listToday}/>
                         </div>
-                    </div>
-                    {listToday.length > 0 && listToday.map((cat) => {
-                        return (
-                            <CategoryStatic key={cat.categoryName} catInfo={cat} cards={cat.cards}/>
-                        )
-                    })}
-                    <div ref={contentRef} className="m-10 hidden print:block">
-                        <PrintableTable data={listToday}/>
                     </div>
                 </div>
             }
