@@ -13,9 +13,9 @@ export default function Header() {
 
 
     return (
-        <div className='bg-white flex justify-between w-full p-8'>
-            <div onClick={() => navigate('/dashboard')} className="hover:cursor-pointer flex justify-start grow items-center gap-4">
-                <div className="w-1/12 h-auto mb-4">
+        <div className='bg-white flex flex-col items-center gap-2 sm:flex-row justify-between w-full p-8'>
+            <div onClick={() => navigate('/dashboard')} className="hover:cursor-pointer flex flex-col sm:flex-row justify-start grow items-center gap-4">
+                <div className="w-[60px] h-auto">
                     <img src="/assets/prayer-box-logo-no-bg.svg" alt="" />
                 </div>
                 <h1 className='text-xl text-[#284563] font-bold'>{firstName}'s Prayer Box</h1>
