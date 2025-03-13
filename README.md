@@ -1,7 +1,7 @@
 # Prayer Box Web App
 
 A full stack web app for dynamically tracking prayer requests and cycling through them to generate a daily list.
-<a href="https://prayer-box-7f78c.web.app/" target="_blank">Check it our here!</a>
+[Check it out here!](https://prayer-box-7f78c.web.app/)
 
 ## Features
 - Firebase Auth enables users to sign up via google
