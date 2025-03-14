@@ -25,4 +25,15 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - N/A
 
+## [1.1.1] - 2025-03-15
+
+### Added
+- Environment variables and github secrets to protect Firebase sensitive keys.
+
+### Changed
+- N/A
+
+### Fixed
+- N/A
+
 

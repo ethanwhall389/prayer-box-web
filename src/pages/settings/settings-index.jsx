@@ -119,7 +119,7 @@ export default function Settings() {
                             <h2 className="text-xl">About Prayer Box</h2>
                         </div>
                         <div className="w-full flex flex-col items-start gap-2">
-                            <p>Prayer Box v. 1.1.0</p>
+                            <p>Prayer Box v. 1.1.1</p>
                             <p>Built and maintained by <a href="https://github.com/ethanwhall389" target="_new">Ethan Hall</a></p>
                         </div>
                     </div>
